@@ -1,1 +1,400 @@
-/* Custom styles (if any) */
+/* — Variables & Reset — */
+:root {
+    --bg: #ffffff;
+    --text: #1d1d1f;
+    --muted: #6e6e73;
+    --accent: #0071e3;
+    --card-shadow: rgba(0,0,0,0.08);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                 Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height:1.5;
+  }
+  
+  /* — Sections — */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
+  
+  /* — Hero — */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  /* a base gray, with two large, diffused color glows */
+  background: #f5f5f7;
+  background-image:
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(0,113,227,0.15),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 70% 70%,
+      rgba(0,200,113,0.15),
+      transparent 60%
+    );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+  .hero-section::after {
+    content: '';
+    position: absolute; top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.3);
+  }
+  .hero-section h1,
+  .hero-subtitle,
+  .hero-cta {
+    position: relative;
+    z-index:1;
+  }
+  .hero-section h1 {
+    font-size: 4rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: #f1f1f1;
+    margin-bottom: 2rem;
+  }
+  .hero-cta {
+    display: inline-block;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background .3s, transform .3s;
+  }
+  .hero-cta:hover {
+    background: darken(var(--accent),5%);
+    transform: translateY(-3px);
+  }
+
+  /* — Projects Section Base — */
+.projects-section {
+    padding: 4rem 1rem;
+    background: #fafafa;
+  }
+  .projects-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #1d1d1f;
+  }
+  
+  /* — Tabs — */
+  .project-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .project-tabs button {
+    background: transparent;
+    border: none;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    color: #6e6e73;
+    cursor: pointer;
+    position: relative;
+  }
+  .project-tabs button.active,
+  .project-tabs button:hover {
+    color: #0071e3;
+  }
+  .project-tabs button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0; right: 0;
+    height: 3px;
+    background: #0071e3;
+    border-radius: 2px;
+  }
+  
+  /* — Horizontal Scroll Container — */
+  .projects-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 2rem;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+  }
+  .projects-container::-webkit-scrollbar {
+    height: 8px;
+  }
+  .projects-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+  }
+  
+  /* — Individual Project Cards — */
+  .project {
+    position: relative;
+    flex: 0 0 80%;
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+    border-radius: 1rem;
+    scroll-snap-align: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transition: transform .3s, box-shadow .3s;
+  }
+  .project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  
+  /* — Overlay Content on Hover — */
+  .project-content {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    background: rgba(0,0,0,0.6);
+    padding: 1rem;
+    border-radius: .5rem;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+  }
+  .project:hover .project-content {
+    opacity: 1;
+  }
+  .project-content h3 {
+    margin: 0 0 .5rem;
+    color: #fff;
+    font-size: 1.5rem;
+  }
+  .project-content p {
+    margin: 0;
+    color: #ddd;
+    font-size: 1rem;
+  }
+  
+  /* — Utility: Hide non-matching projects — */
+  .project.hidden {
+    display: none;
+  }  
+  
+  /* — Grid & Cards — */
+  .grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  }
+  .card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px var(--card-shadow);
+    transition: box-shadow .3s, transform .3s;
+  }
+  .card:hover {
+    box-shadow: 0 8px 24px var(--card-shadow);
+    transform: translateY(-5px);
+  }
+  .card h3 {
+    font-size: 1.5rem;
+    margin-bottom: .5rem;
+  }
+  .card p {
+    color: var(--muted);
+  }
+  
+  /* — Timeline — */
+  .timeline {
+    list-style: none;
+    border-left: 2px solid #e5e5e5;
+    padding-left: 1.5rem;
+  }
+  .timeline li {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+  }
+  .timeline li::before {
+    content:'';
+    position:absolute;
+    top:0.5rem; left:-9px;
+    width:12px; height:12px;
+    background: var(--accent);
+    border-radius:50%;
+  }
+  .timeline span {
+    display:block;
+    color: var(--muted);
+    font-size:.9rem;
+    margin-top:.25rem;
+  }
+  
+  /* — Buttons — */
+  .buttons {
+    text-align: center;
+  }
+  .buttons a {
+    display:inline-block;
+    margin:.5rem;
+    padding:.75rem 1.5rem;
+    background: var(--accent);
+    color:#fff;
+    border-radius:.5rem;
+    text-decoration:none;
+    transition: background .3s, transform .3s;
+  }
+  .buttons a:hover {
+    background: darken(var(--accent),7%);
+    transform: translateY(-2px);
+  }
+  
+  /* — Fade-in on scroll — */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .6s ease-out, transform .6s ease-out;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* — Utility — */
+  a { color: var(--accent); text-decoration: none; }
+  
+  /* adjust darken(...) if you don’t have a preprocessor; simply pick a slightly darker hex */
+  
+  /* — 3D Tilt & Scale + Shimmer Overlay — */
+.project {
+    position: relative;
+    perspective: 1000px;                   /* enable 3D space */
+    overflow: hidden;                      /* contain shimmer */
+    transition: transform .4s ease, box-shadow .4s ease;
+  }
+  
+  /* scale up and tilt slightly */
+  .project:hover {
+    transform: scale(1.05) rotateY(5deg) rotateX(2deg);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+  }
+  
+  /* shimmer pseudo-element */
+  .project::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(
+      120deg,
+      rgba(255,255,255,0.2) 0%,
+      rgba(255,255,255,0.05) 50%,
+      rgba(255,255,255,0.2) 100%
+    );
+    transform: skewX(-20deg);
+    transition: transform .8s ease-in-out;
+    z-index: 2;
+  }
+  .project:hover::before {
+    transform: translateX(300%) skewX(-20deg);
+  }
+  
+  /* — Frosted-Glass Overlay on Content — */
+  .project-content {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.75);      /* light semi-opaque */
+    backdrop-filter: blur(10px);                 /* frosted glass */
+    border: 1px solid rgba(255, 255, 255, 0.4);   /* subtle white frame */
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity .3s ease-in-out .2s;
+    z-index: 3;
+  }
+  
+  .project:hover .project-content {
+    opacity: 1;
+  }
+  
+  .project-content h3 {
+    margin-bottom: .5rem;
+    font-size: 1.6rem;
+    color: #1D1D1F;       /* near-black for high contrast */
+  }
+  
+  .project-content p {
+    margin: 0;
+    font-size: 1rem;
+    color: #4B4B4B;       /* dark gray for readability */
+  }
+  
+  /* — Morphing Blob behind Hero — */
+#blob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120vw;
+  height: 120vh;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  mix-blend-mode: multiply;
+}
+.hero-section h1,
+.hero-subtitle,
+.hero-cta {
+  position: relative;
+  z-index: 1;
+}
+
+/* — Cursor-driven 3D tilt on project cards — */
+.project {
+  transform-style: preserve-3d;
+  transition: transform .1s ease-out, box-shadow .3s;
+}
+.project:hover {
+  /* keep the shimmer/scale in place */
+}
+.project.tilt {
+  will-change: transform;
+}
+
+/* on small viewports, disable tilt */
+@media (max-width: 768px) {
+  .project { transform: none !important; }
+}
+
+/* — Detailed bullets under each timeline item — */
+.exp-details {
+  margin: .5rem 0 0 1.5rem;
+  list-style: disc;
+  color: var(--muted);
+  font-size: .95rem;
+  line-height: 1.4;
+}
+.exp-details li {
+  margin-bottom: .4rem;
+}
