@@ -249,6 +249,11 @@
     font-size:.9rem;
     margin-top:.25rem;
   }
+
+  /* Slight spacing tweak for education list */
+#education .simple-experience li {
+  margin-bottom: 0.5rem;
+}
   
   /* — Buttons — */
   .buttons {
@@ -291,6 +296,14 @@
     perspective: 1000px;                   /* enable 3D space */
     overflow: hidden;                      /* contain shimmer */
     transition: transform .4s ease, box-shadow .4s ease;
+    /* fallback color/gradient */
+    background: linear-gradient(
+      135deg,
+      rgba(0,113,227,0.1),
+      rgba(0,200,113,0.1)
+    );
+    background-size: cover;
+    background-position: center;
   }
   
   /* scale up and tilt slightly */
