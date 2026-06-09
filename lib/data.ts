@@ -12,9 +12,9 @@ export const siteData = {
 
   about: {
     paragraphs: [
-      "I grew up in Guadalajara, México, and came to the U.S. as a first-generation student — carrying two languages, two cultures, and a conviction that technology should work for everyone, not just the people who build it.",
-      "At Stanford, I study Symbolic Systems and HCI because the hardest problems sit at the intersection of how minds work and how systems are designed. My coursework spans AI, cognitive science, linguistics, and human-computer interaction — and I bring all of it to whatever I build.",
-      "I've shipped production code at Amazon twice, co-founded an English-learning program that still runs at Mission High, and built tools for rural communities in the Philippines. The throughline isn't any specific technology — it's engineering with people, not just for them.",
+      "Born in San Francisco, raised in Chapala, Jalisco. I came back to the U.S. for Stanford carrying two languages, two cultures, and a conviction that technology should work for everyone, not just the people who build it.",
+      "At Stanford, I study Symbolic Systems and HCI because the hardest problems sit at the intersection of how minds work and how systems are designed. My coursework spans AI, cognitive science, linguistics, and HCI. I bring all of it to whatever I build.",
+      "I've shipped production code at Amazon three times, co-founded an English-learning program that still runs at Mission High, and built tools for rural communities in the Philippines. The throughline isn't any specific technology. It's engineering with people, not just for them.",
     ],
     highlights: [
       { value: "3×", label: "Amazon SDE Intern" },
@@ -28,7 +28,15 @@ export const siteData = {
     featured: [
       {
         company: "Amazon",
-        role: "SDE Intern — Flex Assignment Team",
+        role: "SDE Intern, Summer 2026",
+        period: "Summer 2026",
+        description:
+          "Incoming SDE intern. Details coming soon.",
+        tags: ["Java", "AWS"],
+      },
+      {
+        company: "Amazon",
+        role: "SDE Intern, Flex Assignment Team",
         period: "Summer 2025",
         description:
           "Shipped features for the Flex Assignment Team within Amazon's Last Mile delivery network, improving driver-assignment algorithms deployed globally across Amazon Flex.",
@@ -36,7 +44,7 @@ export const siteData = {
       },
       {
         company: "Amazon",
-        role: "SDE Intern — Stops Team",
+        role: "SDE Intern, Stops Team",
         period: "Summer 2024",
         description:
           "Designed and deployed features for the Stops Team, improving routing and stop-sequencing for Amazon's last-mile delivery at scale.",
@@ -47,7 +55,7 @@ export const siteData = {
         role: "Product Engineering Intern",
         period: "2023",
         description:
-          "First engineering intern. Built the AI essay-coaching platform end-to-end — model integration, UI, and product systems. Growth contributed to acquisition by New Oriental Education.",
+          "First engineering intern. Built the AI essay-coaching platform end-to-end: model integration, UI, and product systems. Growth contributed to acquisition by New Oriental Education.",
         tags: ["React", "Node.js", "AI", "EdTech"],
         note: "Acquired by New Oriental Education",
       },
@@ -79,9 +87,9 @@ export const siteData = {
       description:
         "Emotional scheduling app using voice AI. Plan by energy, not just time.",
       detail:
-        "Prototyped an AI scheduling system that interprets emotional state and energy levels — not just calendar slots. Built for people who think in feelings, not blocks.",
+        "Prototyped an AI scheduling system that interprets emotional state and energy levels, not just calendar slots. Built for people who think in feelings, not blocks.",
       year: "2025",
-      award: "Best Concept & Most Novel Product — Stanford CS147",
+      award: "Best Concept & Most Novel Product, Stanford CS147",
       context: "Stanford CS147",
     },
     {
@@ -179,6 +187,7 @@ export const siteData = {
     email: "gscgilbertosilva@gmail.com",
     linkedinHandle: "linkedin.com/in/gilxsilva",
     linkedinUrl: "https://linkedin.com/in/gilxsilva",
-    closingLine: "Based in the Bay Area. Open to remote.",
+    closingLine: "Eyeing NYC. Open to Europe. Honestly, anywhere good work is happening.",
+    closingLineSub: "Remote works too.",
   },
 };

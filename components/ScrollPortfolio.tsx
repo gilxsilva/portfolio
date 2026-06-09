@@ -122,7 +122,7 @@ function HeroSection() {
               <CredPill emojiSrc="/emoji/graduation_cap.png" label="Stanford"              bg="#3A5FCC" />
               <CredPill emojiSrc="/emoji/package.png"        label="3× Amazon SDE"         bg="#D05C14" />
               <CredPill emojiSrc="/emoji/sparkles.png"       label="CollegePlan · acquired" bg="#B82840" />
-              <CredPill emojiSrc="/emoji/globe.png"          label="First-gen · SF→Stanford" bg="#1A9E48" />
+              <CredPill emojiSrc="/emoji/globe.png"          label="SF · Chapala · Stanford"  bg="#1A9E48" />
             </motion.div>
 
             {/* Value prop */}
@@ -259,11 +259,11 @@ function WorkSection() {
             style={{ fontSize: 'clamp(2.8rem, 9vw, 6rem)' }}
           >
             Amazon.{' '}
-            <span className="text-muted/40">Twice.</span>
+            <span className="text-muted/40">Three times.</span>
           </motion.h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {siteData.experience.featured.map((job, i) => (
             <motion.article
               key={`${job.company}-${job.role}`}
@@ -419,11 +419,11 @@ function AboutSection() {
               className="font-display font-bold text-ink leading-tight tracking-tight mb-6"
               style={{ fontSize: 'clamp(1.9rem, 4.5vw, 3.2rem)' }}
             >
-              From Guadalajara<br />to Stanford.
+              Born in SF, raised<br />in Chapala, MX.
             </motion.h2>
             <motion.div variants={fadeUp} className="space-y-4 font-sans text-base text-muted leading-relaxed">
               <p>
-                First-gen student. Came from Guadalajara carrying two languages, two cultures, and a conviction that technology should work for everyone — not just the people who build it.
+                Born in San Francisco, raised in Chapala, Jalisco. Back in the US for Stanford. Two languages, two cultures, and a conviction that technology should work for everyone, not just the people who build it.
               </p>
               <p>
                 Symbolic Systems + HCI at Stanford. 3× Amazon SDE intern. Co-founded an English-learning program that still runs at Mission High School, SF.
@@ -527,13 +527,18 @@ function ContactSection() {
           </motion.div>
 
           <div
-            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pt-8 border-t"
+            className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 pt-8 border-t"
             style={{ borderColor: 'rgba(255,255,255,0.08)' }}
           >
-            <p className="font-sans text-sm" style={{ color: 'rgba(255,255,255,0.28)' }}>
-              {siteData.contact.closingLine}
-            </p>
-            <p className="font-sans text-sm" style={{ color: 'rgba(255,255,255,0.28)' }}>
+            <div>
+              <p className="font-sans text-sm font-medium" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                {siteData.contact.closingLine}
+              </p>
+              <p className="font-sans text-sm mt-0.5" style={{ color: 'rgba(255,255,255,0.28)' }}>
+                {siteData.contact.closingLineSub}
+              </p>
+            </div>
+            <p className="font-sans text-sm shrink-0" style={{ color: 'rgba(255,255,255,0.28)' }}>
               © 2026 Gil Silva
             </p>
           </div>
