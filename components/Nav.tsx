@@ -4,10 +4,10 @@ import { Menu, X } from 'lucide-react';
 import { siteData } from '@/lib/data';
 
 const NAV_LINKS = [
-  { label: 'About', href: '#act2' },
-  { label: 'Work', href: '#act4' },
-  { label: 'Projects', href: '#act5' },
-  { label: 'Contact', href: '#act6' },
+  { label: 'About', href: '#about' },
+  { label: 'Work', href: '#work' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Hablemos', href: '#contact' },
 ];
 
 export function Nav() {
@@ -15,7 +15,7 @@ export function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 40);
+    const handler = () => setScrolled(window.scrollY > 48);
     window.addEventListener('scroll', handler, { passive: true });
     return () => window.removeEventListener('scroll', handler);
   }, []);
@@ -29,74 +29,89 @@ export function Nav() {
   return (
     <header
       id="main-nav"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'nav-dark' : ''}`}
+      className="fixed top-0 left-0 right-0 z-50 px-4 pt-3"
     >
       <nav
-        className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between"
+        className={`max-w-5xl mx-auto px-5 h-13 flex items-center justify-between rounded-2xl transition-all duration-300 ${
+          scrolled
+            ? 'bg-white/85 backdrop-blur-xl border border-surface-dark shadow-lg shadow-ink/[0.06]'
+            : ''
+        }`}
         aria-label="Main navigation"
       >
         <a
           href="#"
-          className="font-display text-[1.05rem] font-semibold text-canvas tracking-tight hover:text-accent transition-colors duration-200"
+          className="font-display font-bold text-[1.05rem] text-ink tracking-tight hover:text-accent transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent rounded-lg px-1"
           aria-label="Gil Silva — back to top"
         >
-          Gil Silva
+          GS
         </a>
 
-        <div className="hidden md:flex items-center gap-8" role="list">
+        <div className="hidden md:flex items-center gap-0.5" role="list">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               role="listitem"
-              className="text-sm font-sans text-canvas/60 hover:text-canvas transition-colors duration-200"
+              className="text-sm font-sans font-medium text-muted hover:text-ink px-4 py-2 rounded-xl hover:bg-surface transition-all duration-200"
             >
               {link.label}
             </a>
           ))}
           <a
-            href={`mailto:${siteData.links.email}`}
-            className="text-sm font-sans px-4 py-2 border border-canvas/20 text-canvas hover:border-accent hover:text-accent transition-all duration-200"
+            href={siteData.links.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-2 text-sm font-sans font-semibold px-4 py-2.5 text-white rounded-xl hover:-translate-y-0.5 transition-all duration-200 shadow-md"
+            style={{ background: 'linear-gradient(135deg, #7C3AED 0%, #4F46E5 60%, #2563EB 100%)' }}
           >
-            Get in touch
+            Résumé ↗
           </a>
         </div>
 
         <button
-          className="md:hidden p-1 text-canvas hover:text-accent transition-colors"
+          className="md:hidden p-2 text-ink hover:text-accent transition-colors rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
         >
-          {menuOpen ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
+          {menuOpen ? <X size={20} strokeWidth={2} /> : <Menu size={20} strokeWidth={2} />}
         </button>
       </nav>
 
       <div
         id="mobile-nav"
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          scrolled ? 'bg-ink/85 backdrop-blur-xl' : 'bg-[#0A0908]'
-        } ${menuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+        role="region"
+        className={`md:hidden mx-4 overflow-hidden transition-all duration-300 rounded-2xl mt-2 ${
+          menuOpen
+            ? 'max-h-96 opacity-100 bg-white/95 backdrop-blur-xl border border-surface-dark shadow-xl shadow-ink/10'
+            : 'max-h-0 opacity-0'
+        }`}
         aria-hidden={!menuOpen}
       >
-        <div className="px-6 py-4 flex flex-col border-t border-canvas/10">
+        <div className="px-3 py-3 flex flex-col gap-0.5">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="py-3.5 text-base font-sans text-canvas/60 hover:text-canvas border-b border-canvas/10 last:border-0 transition-colors"
+              className="py-3 px-4 text-base font-sans font-medium text-ink hover:text-accent hover:bg-violet-50 rounded-xl transition-all duration-150"
+              tabIndex={menuOpen ? 0 : -1}
               onClick={() => setMenuOpen(false)}
             >
               {link.label}
             </a>
           ))}
           <a
-            href={`mailto:${siteData.links.email}`}
-            className="mt-4 py-2 text-sm font-sans text-accent"
+            href={siteData.links.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 py-3 px-4 text-sm font-sans font-semibold text-center text-white rounded-xl transition-all duration-200"
+            style={{ background: 'linear-gradient(135deg, #7C3AED 0%, #2563EB 100%)' }}
+            tabIndex={menuOpen ? 0 : -1}
             onClick={() => setMenuOpen(false)}
           >
-            {siteData.links.email}
+            Résumé ↗
           </a>
         </div>
       </div>

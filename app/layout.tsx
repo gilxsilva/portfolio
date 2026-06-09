@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#F7F4EF',
+  themeColor: '#FDFCF9',
 };
 
 export default function RootLayout({
@@ -45,7 +45,7 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${jakartaSans.variable}`}
     >
-      <body className="bg-canvas text-ink font-sans antialiased">
+      <body className="bg-canvas text-ink font-sans antialiased" style={{ backgroundColor: '#FDFCF9' }}>
         <Providers>{children}</Providers>
       </body>
     </html>
