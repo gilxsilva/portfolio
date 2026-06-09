@@ -120,7 +120,7 @@ function HeroSection() {
             {/* Credibility strip */}
             <motion.div variants={fadeUp} className="flex flex-wrap gap-2 mb-7">
               <CredPill emojiSrc="/emoji/graduation_cap.png" label="Stanford"              bg="#3A5FCC" />
-              <CredPill emojiSrc="/emoji/package.png"        label="2× Amazon SDE"         bg="#D05C14" />
+              <CredPill emojiSrc="/emoji/package.png"        label="3× Amazon SDE"         bg="#D05C14" />
               <CredPill emojiSrc="/emoji/sparkles.png"       label="CollegePlan · acquired" bg="#B82840" />
               <CredPill emojiSrc="/emoji/globe.png"          label="First-gen · SF→Stanford" bg="#1A9E48" />
             </motion.div>
@@ -426,7 +426,7 @@ function AboutSection() {
                 First-gen student. Came from Guadalajara carrying two languages, two cultures, and a conviction that technology should work for everyone — not just the people who build it.
               </p>
               <p>
-                Symbolic Systems + HCI at Stanford. 2× Amazon SDE intern. Co-founded an English-learning program that still runs at Mission High School, SF.
+                Symbolic Systems + HCI at Stanford. 3× Amazon SDE intern. Co-founded an English-learning program that still runs at Mission High School, SF.
               </p>
             </motion.div>
           </motion.div>

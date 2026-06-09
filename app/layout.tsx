@@ -20,11 +20,11 @@ const jakartaSans = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: 'Gil Silva — Engineer & Designer',
   description:
-    'Symbolic Systems + HCI student at Stanford. 2× Amazon SDE Intern. Building human-centered technology.',
+    'Symbolic Systems + HCI student at Stanford. 3× Amazon SDE Intern. Building human-centered technology.',
   openGraph: {
     title: 'Gil Silva — Engineer & Designer',
     description:
-      'Symbolic Systems + HCI at Stanford. 2× Amazon SDE Intern. Building technology that empowers people.',
+      'Symbolic Systems + HCI at Stanford. 3× Amazon SDE Intern. Building technology that empowers people.',
     type: 'website',
     locale: 'en_US',
   },

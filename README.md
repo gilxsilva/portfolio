@@ -1,50 +1,76 @@
 # Gil Silva — Portfolio
 
-Personal portfolio site. Next.js + Tailwind v4 + TypeScript, static export.
+**Ingeniero y diseñador.** Engineer and designer building technology that empowers people.
+
+Stanford Symbolic Systems + HCI · 3× Amazon SDE · CollegePlan (acquired) · First-gen
+
+---
 
 ## Stack
 
-- **Next.js 16** — static export (`output: 'export'`)
-- **Tailwind CSS v4** — CSS-first config, design tokens in `app/globals.css`
-- **Fraunces** (display) + **Plus Jakarta Sans** (body) via `next/font/google`
-- No UI library — ~4 dependencies total
+| | |
+|---|---|
+| **Next.js 15** | Static export, App Router |
+| **Tailwind CSS v4** | CSS-first config, design tokens in `globals.css` |
+| **Framer Motion** | Snappy fade-up animations, reduced-motion aware |
+| **Fraunces** + **Plus Jakarta Sans** | Display + body via `next/font/google` |
+
+Zero UI libraries. ~4 runtime dependencies.
+
+---
 
 ## Running locally
 
 ```bash
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
+---
+
 ## Editing content
 
-All text, links, and project data live in one file: [`lib/data.ts`](./lib/data.ts).  
-Edit it freely — no need to touch any component.
+Everything — name, bio, jobs, projects, links — lives in one file:
+
+```
+lib/data.ts
+```
+
+No component digging needed. Change it there, done everywhere.
+
+---
+
+## Swapping your Bitmoji
+
+Drop your Bitmoji PNG at `public/bitmoji.png`.  
+It loads automatically. Falls back to `bitmoji.svg` → `avatar.svg` if not found.
 
 ## Adding your résumé
 
-Drop your PDF at `public/resume.pdf`. The "View Résumé" button will work automatically.
+Drop your PDF at `public/resume.pdf`. The **View Résumé** button wires up automatically.
 
-## Deployment
+---
 
-### Vercel (recommended — free, zero config)
+## Deploy
 
-1. Push this repo to GitHub
-2. Go to [vercel.com/new](https://vercel.com/new) and import the repo
-3. Click **Deploy** — done
-4. Optionally: remove `output: 'export'` and `images: { unoptimized: true }` from `next.config.mjs` for Vercel's native image optimization
+### Vercel (recommended)
 
-### GitHub Pages (also free)
+1. Push to GitHub
+2. Import at [vercel.com/new](https://vercel.com/new)
+3. Hit **Deploy** — zero config needed
 
-1. If deploying to `username.github.io/repo-name` (not a root domain), add `basePath: '/repo-name'` to `next.config.mjs`
-2. Push to GitHub
-3. Settings → Pages → Source: **GitHub Actions**
-4. Create `.github/workflows/deploy.yml`:
+> Remove `output: 'export'` and `images: { unoptimized: true }` from `next.config.mjs` to unlock Vercel's native image optimization.
+
+### GitHub Pages
+
+1. Add `basePath: '/repo-name'` to `next.config.mjs` if not on a root domain
+2. Settings → Pages → Source: **GitHub Actions**
+3. Add `.github/workflows/deploy.yml`:
 
 ```yaml
-name: Deploy to GitHub Pages
+name: Deploy
 on:
   push:
     branches: [main]
@@ -59,15 +85,12 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
-      - run: pnpm install
-      - run: pnpm build
+          cache: npm
+      - run: npm install
+      - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
@@ -75,16 +98,22 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
+---
+
 ## Design tokens
 
-All design tokens are defined in `app/globals.css` under `@theme`:
+Defined in `app/globals.css` under `@theme`:
 
-| Token | Value | Usage |
+| Token | Value | |
 |---|---|---|
-| `--color-ink` | `#0F0E0D` | Primary text |
-| `--color-canvas` | `#F7F4EF` | Page background |
-| `--color-accent` | `#C45A2A` | Terracotta accent |
-| `--color-muted` | `#6B6560` | Secondary text |
-| `--color-surface` | `#EDE8E0` | Card/section backgrounds |
+| `--color-ink` | `#18120E` | Primary text |
+| `--color-canvas` | `#EEECEA` | Page background |
+| `--color-accent` | `#3B82C4` | Blue accent |
+| `--color-muted` | `#6B6762` | Secondary text |
+| `--color-surface` | `#E5E3E0` | Section backgrounds |
 | `--font-display` | Fraunces | Headings |
-| `--font-sans` | Plus Jakarta Sans | Body/UI |
+| `--font-sans` | Plus Jakarta Sans | Body / UI |
+
+---
+
+*Based in the Bay Area. Open to remote.*
