@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" fill="none">
+  <!-- AVATAR PLACEHOLDER — replace public/avatar.svg (or public/avatar.png) with your
+       real custom illustrated avatar. See components/Hero.tsx for the <img> tag.
+       Recommended size: 240×280px or 1:1.17 ratio, any format. -->
+  <rect width="240" height="280" rx="20" fill="url(#bg)"/>
+  <!-- Ambient glow -->
+  <ellipse cx="120" cy="240" rx="80" ry="30" fill="rgba(196,90,42,0.12)"/>
+  <!-- Body / shirt -->
+  <ellipse cx="120" cy="232" rx="72" ry="56" fill="url(#body)"/>
+  <!-- Collar detail -->
+  <path d="M96 178 Q120 196 144 178" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/>
+  <!-- Neck -->
+  <rect x="107" y="148" width="26" height="30" rx="6" fill="url(#skin)"/>
+  <!-- Head -->
+  <ellipse cx="120" cy="118" rx="48" ry="52" fill="url(#skin)"/>
+  <!-- Hair -->
+  <path d="M72 108 Q74 60 120 58 Q166 60 168 108 Q164 82 120 80 Q76 82 72 108Z" fill="#1A1208"/>
+  <!-- Left ear -->
+  <ellipse cx="73" cy="122" rx="8" ry="10" fill="url(#skin)"/>
+  <!-- Right ear -->
+  <ellipse cx="167" cy="122" rx="8" ry="10" fill="url(#skin)"/>
+  <!-- Eyes -->
+  <ellipse cx="104" cy="118" rx="7" ry="7.5" fill="#1A1208"/>
+  <ellipse cx="136" cy="118" rx="7" ry="7.5" fill="#1A1208"/>
+  <!-- Eye highlights -->
+  <circle cx="107" cy="115" r="2.5" fill="white" opacity="0.7"/>
+  <circle cx="139" cy="115" r="2.5" fill="white" opacity="0.7"/>
+  <!-- Eyebrows -->
+  <path d="M97 107 Q104 103 111 106" stroke="#1A1208" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M129 106 Q136 103 143 107" stroke="#1A1208" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <!-- Nose -->
+  <path d="M118 128 Q116 136 120 138 Q124 136 122 128" stroke="#A07058" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  <!-- Smile -->
+  <path d="M107 148 Q120 160 133 148" stroke="#8B5A3A" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <!-- Placeholder label -->
+  <text x="120" y="268" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="rgba(107,101,96,0.6)" letter-spacing="0.5">avatar placeholder</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="240" y2="280" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F0EDE8"/>
+      <stop offset="100%" stop-color="#E8E2DA"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="80" y1="70" x2="160" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D4916B"/>
+      <stop offset="100%" stop-color="#C07855"/>
+    </linearGradient>
+    <linearGradient id="body" x1="50" y1="176" x2="190" y2="280" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C45A2A"/>
+      <stop offset="100%" stop-color="#9A4020"/>
+    </linearGradient>
+  </defs>
+</svg>

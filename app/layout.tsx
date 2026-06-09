@@ -1,60 +1,53 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import { WipBanner } from "@/components/wip-banner"
-import "./globals.css"
+import type { Metadata, Viewport } from 'next';
+import { Fraunces, Plus_Jakarta_Sans } from 'next/font/google';
+import { Providers } from '@/components/Providers';
+import './globals.css';
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  variable: '--font-fraunces',
+  display: 'swap',
+  axes: ['SOFT', 'WONK', 'opsz'],
+});
+
+const jakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-jakarta',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+});
 
 export const metadata: Metadata = {
-  title: "Gil Silva - HCI Portfolio",
-  description: "Stanford Symbolic Systems & HCI - Building systems that make people feel more capable",
-  generator: "v0.app",
-  icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
+  title: 'Gil Silva — Engineer & Designer',
+  description:
+    'Symbolic Systems + HCI student at Stanford. 2× Amazon SDE Intern. Building human-centered technology.',
+  openGraph: {
+    title: 'Gil Silva — Engineer & Designer',
+    description:
+      'Symbolic Systems + HCI at Stanford. 2× Amazon SDE Intern. Building technology that empowers people.',
+    type: 'website',
+    locale: 'en_US',
   },
-}
+  icons: { icon: '/icon.svg' },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#F7F4EF',
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`font-sans antialiased`}>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                const theme = localStorage.getItem('theme') || 'dark';
-                document.documentElement.className = theme;
-              } catch (e) {
-                document.documentElement.className = 'dark';
-              }
-            `,
-          }}
-        />
-        <WipBanner />
-        {children}
-        <Analytics />
+    <html
+      lang="en"
+      className={`${fraunces.variable} ${jakartaSans.variable}`}
+    >
+      <body className="bg-canvas text-ink font-sans antialiased">
+        <Providers>{children}</Providers>
       </body>
     </html>
-  )
+  );
 }
