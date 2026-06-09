@@ -5,11 +5,11 @@ import { siteData } from '@/lib/data';
 /* ─── Animation helpers ─────────────────────────────────────────────────── */
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 22 },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] as const },
+    transition: { duration: 0.52, ease: [0.16, 1, 0.3, 1] as const },
   },
 };
 
@@ -20,47 +20,57 @@ const stagger = (delay = 0.09) => ({
 
 const inView = { once: true, margin: '-72px' as const };
 
-/* ─── FloatingPill ──────────────────────────────────────────────────────── */
+/* ─── Dayo-style stadium pill (floating in hero) ────────────────────────── */
 
-interface PillProps {
+interface StadiumPillProps {
   emojiSrc: string;
   label: string;
-  colorClass: string;
+  bg: string;
   className?: string;
+  rotate?: string;
   delay?: number;
 }
 
-function FloatingPill({ emojiSrc, label, colorClass, className = '', delay = 0 }: PillProps) {
+function StadiumPill({
+  emojiSrc,
+  label,
+  bg,
+  className = '',
+  rotate = 'rotate(0deg)',
+  delay = 0,
+}: StadiumPillProps) {
   const reduced = useReducedMotion();
   return (
     <motion.div
-      className={`absolute flex items-center gap-2 rounded-full px-3.5 py-2 shadow-lg shadow-ink/10 text-[13px] font-sans font-semibold select-none pointer-events-none border ${colorClass} ${className}`}
-      animate={reduced ? undefined : { y: [0, -7, 0] }}
-      transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut', delay }}
+      className={`absolute flex items-center gap-2.5 rounded-full px-5 py-3 shadow-xl shadow-black/20 text-[15px] font-sans font-bold text-white select-none pointer-events-none whitespace-nowrap ${className}`}
+      style={{ background: bg, transform: rotate }}
+      animate={reduced ? undefined : { y: [0, -9, 0] }}
+      transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut', delay }}
       aria-hidden="true"
     >
-      <img src={emojiSrc} alt="" width={22} height={22} className="shrink-0 drop-shadow-sm" />
-      <span>{label}</span>
+      <img src={emojiSrc} alt="" width={24} height={24} className="shrink-0 drop-shadow-sm" />
+      {label}
     </motion.div>
   );
 }
 
-/* ─── CredPill ──────────────────────────────────────────────────────────── */
+/* ─── Small credibility pill (hero text column) ─────────────────────────── */
 
 function CredPill({
   emojiSrc,
   label,
-  colorClass,
+  bg,
 }: {
   emojiSrc: string;
   label: string;
-  colorClass: string;
+  bg: string;
 }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-sans font-semibold border ${colorClass}`}
+      className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-sans font-bold text-white shadow-md shadow-black/15"
+      style={{ background: bg }}
     >
-      <img src={emojiSrc} alt="" width={15} height={15} className="shrink-0" />
+      <img src={emojiSrc} alt="" width={14} height={14} className="shrink-0" />
       {label}
     </span>
   );
@@ -75,83 +85,44 @@ function HeroSection() {
       className="relative min-h-screen flex items-center overflow-hidden bg-canvas pt-28 pb-20"
       aria-label="Introduction"
     >
-      {/* Background orbs */}
-      <div
-        className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full -translate-y-1/3 translate-x-1/4 pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(124,58,237,0.09) 0%, transparent 65%)' }}
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full translate-y-1/3 -translate-x-1/4 pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 65%)' }}
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(217,119,6,0.06) 0%, transparent 65%)' }}
-        aria-hidden="true"
-      />
+      <div className="max-w-5xl mx-auto px-6 w-full">
+        <div className="grid lg:grid-cols-[1fr_400px] gap-12 lg:gap-10 items-center">
 
-      <div className="max-w-5xl mx-auto px-6 w-full relative z-10">
-        <div className="grid lg:grid-cols-[1fr_360px] gap-12 lg:gap-8 items-center">
-
-          {/* ── Left column: text ── */}
+          {/* ── Left: text (dark on light) ── */}
           <motion.div
-            variants={stagger(0.08)}
+            variants={stagger(0.09)}
             initial="hidden"
             animate="show"
             className="max-w-xl"
           >
             {/* Availability */}
             <motion.div variants={fadeUp} className="flex items-center gap-2.5 mb-5">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 shadow-sm shadow-emerald-400" aria-hidden="true" />
-              <span className="text-xs font-sans font-semibold text-emerald-700 tracking-widest uppercase">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" aria-hidden="true" />
+              <span className="text-xs font-sans font-bold text-emerald-700 tracking-widest uppercase">
                 {siteData.availability}
               </span>
             </motion.div>
 
             {/* ES tagline */}
-            <motion.p variants={fadeUp} className="font-display text-lg text-muted italic mb-4">
+            <motion.p variants={fadeUp} className="font-display text-lg text-muted italic mb-3">
               {siteData.taglineEs}
             </motion.p>
 
-            {/* Name — gradient */}
+            {/* Name */}
             <motion.h1
               variants={fadeUp}
-              className="font-display font-bold leading-[0.88] tracking-tight mb-7"
-              style={{
-                fontSize: 'clamp(3.6rem, 11vw, 7rem)',
-                backgroundImage: 'linear-gradient(135deg, #7C3AED 0%, #4F46E5 45%, #2563EB 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
+              className="font-display font-bold leading-[0.88] tracking-tight text-ink mb-7"
+              style={{ fontSize: 'clamp(3.6rem, 11vw, 7rem)' }}
             >
               Gil Silva
             </motion.h1>
 
             {/* Credibility strip */}
             <motion.div variants={fadeUp} className="flex flex-wrap gap-2 mb-7">
-              <CredPill
-                emojiSrc="/emoji/graduation_cap.png"
-                label="Stanford"
-                colorClass="bg-violet-50 text-violet-800 border-violet-200"
-              />
-              <CredPill
-                emojiSrc="/emoji/package.png"
-                label="2× Amazon SDE"
-                colorClass="bg-amber-50 text-amber-800 border-amber-200"
-              />
-              <CredPill
-                emojiSrc="/emoji/sparkles.png"
-                label="CollegePlan · acquired"
-                colorClass="bg-rose-50 text-rose-700 border-rose-200"
-              />
-              <CredPill
-                emojiSrc="/emoji/globe.png"
-                label="First-gen · SF → Stanford"
-                colorClass="bg-emerald-50 text-emerald-800 border-emerald-200"
-              />
+              <CredPill emojiSrc="/emoji/graduation_cap.png" label="Stanford"              bg="#3A5FCC" />
+              <CredPill emojiSrc="/emoji/package.png"        label="2× Amazon SDE"         bg="#D05C14" />
+              <CredPill emojiSrc="/emoji/sparkles.png"       label="CollegePlan · acquired" bg="#B82840" />
+              <CredPill emojiSrc="/emoji/globe.png"          label="First-gen · SF→Stanford" bg="#1A9E48" />
             </motion.div>
 
             {/* Value prop */}
@@ -165,14 +136,13 @@ function HeroSection() {
                 href={siteData.links.resume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-sans font-semibold text-white shadow-lg hover:-translate-y-0.5 hover:shadow-violet-300/60 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                style={{ background: 'linear-gradient(135deg, #7C3AED 0%, #2563EB 100%)' }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-sans font-bold text-white bg-ink hover:-translate-y-0.5 transition-all duration-200 shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 View Résumé ↗
               </a>
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-sans font-semibold text-ink-subtle border-2 border-surface-dark hover:border-accent hover:text-accent hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-sans font-bold text-ink-subtle border-2 border-surface-dark hover:border-ink hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 See Projects ↓
               </a>
@@ -180,70 +150,77 @@ function HeroSection() {
                 href={siteData.links.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-sans font-medium text-muted hover:text-accent underline underline-offset-4 decoration-surface-dark hover:decoration-accent transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent rounded"
+                className="text-sm font-sans font-semibold text-muted hover:text-ink underline underline-offset-4 decoration-surface-dark hover:decoration-ink transition-colors duration-150"
               >
                 LinkedIn ↗
               </a>
             </motion.div>
           </motion.div>
 
-          {/* ── Right column: avatar + floating tags ── */}
+          {/* ── Right: bitmoji card + floating stadium pills ── */}
           <motion.div
             className="hidden lg:flex items-center justify-center"
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.68, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
             aria-hidden="true"
           >
-            <div className="relative" style={{ width: 340, height: 380 }}>
-              {/* Glow behind avatar */}
-              <div
-                className="absolute inset-0 rounded-3xl pointer-events-none"
-                style={{
-                  background:
-                    'radial-gradient(circle at 50% 55%, rgba(124,58,237,0.17) 0%, transparent 65%)',
+            {/*
+             * Bitmoji card — same rounded card style as the Dayo reference.
+             * Replace /public/bitmoji.svg with your own Bitmoji PNG/SVG any time.
+             */}
+            <div className="relative" style={{ width: 400, height: 440 }}>
+
+              {/* Memoji — transparent PNG floats on the neutral bg */}
+              <img
+                src="/bitmoji.png"
+                alt="Gil Silva Memoji"
+                width={300}
+                height={320}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 object-contain drop-shadow-2xl select-none"
+                style={{ width: 300, height: 320 }}
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = '/bitmoji.svg';
+                  (e.currentTarget as HTMLImageElement).onerror = () => {
+                    (e.currentTarget as HTMLImageElement).src = '/avatar.svg';
+                  };
                 }}
               />
 
-              {/* Avatar */}
-              <img
-                src="/avatar.svg"
-                alt=""
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-3xl object-cover z-10 shadow-xl shadow-violet-200/40"
-                width={200}
-                height={232}
-                style={{ width: 200, height: 232 }}
-              />
-
-              {/* Floating pills */}
-              <FloatingPill
+              {/* Floating stadium pills — color is the accent, not the background */}
+              <StadiumPill
                 emojiSrc="/emoji/package.png"
                 label="Amazon"
-                colorClass="bg-amber-50 text-amber-800 border-amber-200"
-                className="top-10 -left-4"
+                bg="#D05C14"
+                className="top-12 -left-4"
+                rotate="rotate(-4deg)"
                 delay={0}
               />
-              <FloatingPill
+              <StadiumPill
                 emojiSrc="/emoji/graduation_cap.png"
                 label="Stanford"
-                colorClass="bg-violet-50 text-violet-800 border-violet-200"
-                className="top-20 -right-6"
+                bg="#3A5FCC"
+                className="top-24 -right-6"
+                rotate="rotate(3deg)"
                 delay={1.1}
               />
-              <FloatingPill
+              <StadiumPill
                 emojiSrc="/emoji/globe.png"
                 label="Community"
-                colorClass="bg-emerald-50 text-emerald-800 border-emerald-200"
-                className="bottom-24 -left-10"
-                delay={2.2}
+                bg="#1A9E48"
+                className="bottom-28 -left-10"
+                rotate="rotate(-3deg)"
+                delay={2.1}
               />
-              <FloatingPill
+              <StadiumPill
                 emojiSrc="/emoji/sparkles.png"
                 label="Shipped at scale"
-                colorClass="bg-blue-50 text-blue-800 border-blue-200"
-                className="bottom-10 -right-2"
+                bg="#C48800"
+                className="bottom-14 -right-4"
+                rotate="rotate(3deg)"
                 delay={0.6}
               />
+
             </div>
           </motion.div>
 
@@ -255,12 +232,13 @@ function HeroSection() {
 
 /* ─── WORK ──────────────────────────────────────────────────────────────── */
 
+const CARD_BLUE = 'linear-gradient(145deg, #A8D6F5 0%, #5AAEE6 55%, #2E92D8 100%)';
+
 function WorkSection() {
   return (
     <section
       id="work"
-      className="py-24"
-      style={{ backgroundColor: '#18120E' }}
+      className="py-24 bg-canvas"
       aria-labelledby="work-heading"
     >
       <div className="max-w-5xl mx-auto px-6">
@@ -271,17 +249,17 @@ function WorkSection() {
           viewport={inView}
           className="mb-14"
         >
-          <motion.p variants={fadeUp} className="font-sans text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: '#a78bfa' }}>
+          <motion.p variants={fadeUp} className="font-sans text-xs font-bold text-accent tracking-widest uppercase mb-3">
             Selected Work
           </motion.p>
           <motion.h2
             variants={fadeUp}
             id="work-heading"
-            className="font-display font-bold text-canvas leading-none tracking-tighter"
+            className="font-display font-bold text-ink leading-none tracking-tighter"
             style={{ fontSize: 'clamp(2.8rem, 9vw, 6rem)' }}
           >
             Amazon.{' '}
-            <span style={{ color: 'rgba(253,252,249,0.3)' }}>Twice.</span>
+            <span className="text-muted/40">Twice.</span>
           </motion.h2>
         </motion.div>
 
@@ -289,40 +267,29 @@ function WorkSection() {
           {siteData.experience.featured.map((job, i) => (
             <motion.article
               key={`${job.company}-${job.role}`}
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 26 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={inView}
-              transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="card-lift relative rounded-2xl p-6 border"
-              style={{
-                backgroundColor: 'rgba(255,255,255,0.06)',
-                borderColor: 'rgba(255,255,255,0.09)',
-              }}
+              transition={{ duration: 0.48, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="card-lift relative rounded-3xl p-6 overflow-hidden"
+              style={{ background: CARD_BLUE }}
             >
               {job.note && (
-                <span
-                  className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-sans font-semibold mb-4"
-                  style={{ backgroundColor: 'rgba(244,63,94,0.18)', color: '#fca5a5' }}
-                >
+                <span className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-sans font-bold mb-4 bg-white/25 text-white">
                   ✦ {job.note}
                 </span>
               )}
               <div className="mb-3">
-                <span className="font-display text-xl font-bold text-canvas">{job.company}</span>
-                <span className="block font-sans text-sm text-canvas/60 mt-0.5 leading-snug">{job.role}</span>
-                <span className="font-sans text-xs mt-1 block" style={{ color: 'rgba(253,252,249,0.35)' }}>
-                  {job.period}
-                </span>
+                <span className="font-display text-xl font-bold text-white">{job.company}</span>
+                <span className="block font-sans text-sm text-white/70 mt-0.5 leading-snug">{job.role}</span>
+                <span className="font-sans text-xs text-white/50 mt-1 block">{job.period}</span>
               </div>
-              <p className="font-sans text-sm leading-relaxed mb-5" style={{ color: 'rgba(253,252,249,0.52)' }}>
-                {job.description}
-              </p>
+              <p className="font-sans text-sm text-white/75 leading-relaxed mb-5">{job.description}</p>
               <div className="flex flex-wrap gap-1.5">
                 {job.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full px-2.5 py-1 text-xs font-sans font-medium"
-                    style={{ backgroundColor: 'rgba(255,255,255,0.08)', color: 'rgba(253,252,249,0.55)' }}
+                    className="rounded-full px-2.5 py-1 text-xs font-sans font-semibold bg-white/20 text-white"
                   >
                     {tag}
                   </span>
@@ -338,13 +305,13 @@ function WorkSection() {
 
 /* ─── PROJECTS ──────────────────────────────────────────────────────────── */
 
-const PROJECT_COLORS: Record<string, { pill: string; hover: string }> = {
-  'HCI · Product':       { pill: 'bg-violet-100 text-violet-700 border-violet-200', hover: 'hover:border-violet-300 hover:shadow-violet-100/60' },
-  'Global Health · AI':  { pill: 'bg-blue-100 text-blue-700 border-blue-200',       hover: 'hover:border-blue-300 hover:shadow-blue-100/60' },
-  'Community · EdTech':  { pill: 'bg-emerald-100 text-emerald-700 border-emerald-200', hover: 'hover:border-emerald-300 hover:shadow-emerald-100/60' },
-  'Civic Tech · Legal':  { pill: 'bg-amber-100 text-amber-700 border-amber-200',    hover: 'hover:border-amber-300 hover:shadow-amber-100/60' },
-  'EdTech · Research':   { pill: 'bg-rose-100 text-rose-700 border-rose-200',       hover: 'hover:border-rose-300 hover:shadow-rose-100/60' },
-  'Nonprofit · Product': { pill: 'bg-orange-100 text-orange-700 border-orange-200', hover: 'hover:border-orange-300 hover:shadow-orange-100/60' },
+const PROJECT_STYLES: Record<string, { pill: string; accent: string }> = {
+  'HCI · Product':       { pill: '#3A5FCC', accent: '#3A5FCC' },
+  'Global Health · AI':  { pill: '#2E92D8', accent: '#2E92D8' },
+  'Community · EdTech':  { pill: '#1A9E48', accent: '#1A9E48' },
+  'Civic Tech · Legal':  { pill: '#D48A00', accent: '#D48A00' },
+  'EdTech · Research':   { pill: '#B82840', accent: '#B82840' },
+  'Nonprofit · Product': { pill: '#D05C14', accent: '#D05C14' },
 };
 
 function ProjectsSection() {
@@ -362,7 +329,7 @@ function ProjectsSection() {
           viewport={inView}
           className="mb-14"
         >
-          <motion.p variants={fadeUp} className="font-sans text-xs font-semibold text-accent tracking-widest uppercase mb-3">
+          <motion.p variants={fadeUp} className="font-sans text-xs font-bold text-accent tracking-widest uppercase mb-3">
             Proyectos
           </motion.p>
           <motion.h2
@@ -377,20 +344,21 @@ function ProjectsSection() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {siteData.projects.map((project, i) => {
-            const colors = PROJECT_COLORS[project.tag] ?? {
-              pill: 'bg-surface text-muted border-surface-dark',
-              hover: 'hover:border-accent hover:shadow-accent/10',
-            };
+            const style = PROJECT_STYLES[project.tag] ?? { pill: '#3B82C4', accent: '#3B82C4' };
             return (
               <motion.article
                 key={project.id}
-                initial={{ opacity: 0, y: 22 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={inView}
-                transition={{ duration: 0.48, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className={`card-lift group rounded-2xl p-6 bg-white border-2 border-surface-dark hover:shadow-lg transition-all duration-300 ${colors.hover}`}
+                transition={{ duration: 0.46, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="card-lift rounded-3xl p-6 bg-white border border-surface-dark hover:shadow-xl transition-all duration-300"
+                style={{ '--accent': style.accent } as React.CSSProperties}
               >
-                <span className={`inline-block rounded-full px-2.5 py-1 text-xs font-sans font-semibold border mb-3 ${colors.pill}`}>
+                <span
+                  className="inline-block rounded-full px-3 py-1.5 text-xs font-sans font-bold text-white mb-3 shadow-md shadow-black/10"
+                  style={{ background: style.pill }}
+                >
                   {project.tag}
                 </span>
                 <h3 className="font-display text-[1.1rem] font-bold text-ink leading-tight mb-2">
@@ -400,11 +368,12 @@ function ProjectsSection() {
                   {project.description}
                 </p>
                 {project.award && (
-                  <p className="font-sans text-xs font-semibold text-accent mb-1">★ {project.award}</p>
+                  <p className="font-sans text-xs font-bold mb-1" style={{ color: style.accent }}>
+                    ★ {project.award}
+                  </p>
                 )}
-                <p className="font-sans text-xs text-muted/60">
-                  {project.year}
-                  {project.context ? ` · ${project.context}` : ''}
+                <p className="font-sans text-xs text-muted/55">
+                  {project.year}{project.context ? ` · ${project.context}` : ''}
                 </p>
               </motion.article>
             );
@@ -417,11 +386,11 @@ function ProjectsSection() {
 
 /* ─── ABOUT ─────────────────────────────────────────────────────────────── */
 
-const STAT_GRADIENTS = [
-  'linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%)',
-  'linear-gradient(135deg, #D97706 0%, #EA580C 100%)',
-  'linear-gradient(135deg, #059669 0%, #0891B2 100%)',
-  'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
+const STAT_STYLES = [
+  { bg: '#3A5FCC', shadow: 'rgba(58,95,204,0.25)' },
+  { bg: '#D05C14', shadow: 'rgba(208,92,20,0.25)' },
+  { bg: '#1A9E48', shadow: 'rgba(26,158,72,0.25)' },
+  { bg: '#2E92D8', shadow: 'rgba(46,146,216,0.25)' },
 ];
 
 function AboutSection() {
@@ -441,7 +410,7 @@ function AboutSection() {
             whileInView="show"
             viewport={inView}
           >
-            <motion.p variants={fadeUp} className="font-sans text-xs font-semibold text-accent tracking-widest uppercase mb-3">
+            <motion.p variants={fadeUp} className="font-sans text-xs font-bold text-accent tracking-widest uppercase mb-3">
               About
             </motion.p>
             <motion.h2
@@ -464,29 +433,28 @@ function AboutSection() {
 
           {/* Stat cards */}
           <div className="grid grid-cols-2 gap-4">
-            {siteData.about.highlights.map((h, i) => (
-              <motion.div
-                key={h.label}
-                initial={{ opacity: 0, scale: 0.92 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={inView}
-                transition={{ duration: 0.44, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="card-lift rounded-2xl p-6 bg-white border border-surface-dark shadow-sm"
-              >
-                <div
-                  className="font-display font-bold text-3xl md:text-4xl mb-2"
-                  style={{
-                    backgroundImage: STAT_GRADIENTS[i],
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
+            {siteData.about.highlights.map((h, i) => {
+              const s = STAT_STYLES[i];
+              return (
+                <motion.div
+                  key={h.label}
+                  initial={{ opacity: 0, scale: 0.93 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={inView}
+                  transition={{ duration: 0.42, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="card-lift rounded-3xl p-6 bg-white border border-surface-dark"
+                  style={{ boxShadow: `0 8px 24px -4px ${s.shadow}` }}
                 >
-                  {h.value}
-                </div>
-                <div className="font-sans text-sm text-muted leading-snug">{h.label}</div>
-              </motion.div>
-            ))}
+                  <div
+                    className="font-display font-bold text-3xl md:text-4xl mb-2"
+                    style={{ color: s.bg }}
+                  >
+                    {h.value}
+                  </div>
+                  <div className="font-sans text-sm text-muted leading-snug">{h.label}</div>
+                </motion.div>
+              );
+            })}
           </div>
 
         </div>
@@ -502,17 +470,17 @@ function ContactSection() {
     <footer
       id="contact"
       className="relative overflow-hidden py-28"
-      style={{ background: 'linear-gradient(135deg, #1a1033 0%, #0f1629 55%, #0b1a2c 100%)' }}
+      style={{ background: 'linear-gradient(150deg, #18283E 0%, #0F1A2C 50%, #0C1624 100%)' }}
     >
       {/* Glow blobs */}
       <div
-        className="absolute top-0 left-1/4 w-[560px] h-[440px] rounded-full pointer-events-none -translate-y-1/2"
-        style={{ background: 'radial-gradient(circle, rgba(124,58,237,0.26) 0%, transparent 65%)' }}
+        className="absolute top-0 left-1/4 w-[540px] h-[420px] rounded-full pointer-events-none -translate-y-1/2"
+        style={{ background: 'radial-gradient(circle, rgba(44,130,210,0.28) 0%, transparent 65%)' }}
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-0 right-1/4 w-[440px] h-[440px] rounded-full pointer-events-none translate-y-1/3"
-        style={{ background: 'radial-gradient(circle, rgba(37,99,235,0.22) 0%, transparent 65%)' }}
+        className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full pointer-events-none translate-y-1/3"
+        style={{ background: 'radial-gradient(circle, rgba(26,158,72,0.18) 0%, transparent 65%)' }}
         aria-hidden="true"
       />
 
@@ -523,20 +491,14 @@ function ContactSection() {
           whileInView="show"
           viewport={inView}
         >
-          <motion.p variants={fadeUp} className="font-sans text-xs font-semibold tracking-widest uppercase mb-5" style={{ color: '#a78bfa' }}>
+          <motion.p variants={fadeUp} className="font-sans text-xs font-bold tracking-widest uppercase mb-5" style={{ color: '#60A5FA' }}>
             Contact
           </motion.p>
 
           <motion.h2
             variants={fadeUp}
-            className="font-display font-bold leading-none tracking-tighter mb-5"
-            style={{
-              fontSize: 'clamp(3.8rem, 13vw, 10rem)',
-              backgroundImage: 'linear-gradient(135deg, #c4b5fd 0%, #93c5fd 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
+            className="font-display font-bold leading-none tracking-tighter mb-5 text-white"
+            style={{ fontSize: 'clamp(3.8rem, 13vw, 10rem)' }}
           >
             {siteData.contact.headingEs}
           </motion.h2>
@@ -548,35 +510,19 @@ function ContactSection() {
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 mb-16">
             <a
               href={`mailto:${siteData.contact.email}`}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl text-sm font-sans font-semibold text-white border transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-              style={{ borderColor: 'rgba(255,255,255,0.14)', backgroundColor: 'rgba(255,255,255,0.05)' }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = '#a78bfa';
-                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'rgba(124,58,237,0.12)';
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.14)';
-                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'rgba(255,255,255,0.05)';
-              }}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl text-sm font-sans font-bold text-white transition-all duration-200 hover:-translate-y-0.5 shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              style={{ background: '#2E92D8' }}
             >
-              ✉&nbsp; {siteData.contact.email}
+              ✉ &nbsp;{siteData.contact.email}
             </a>
             <a
               href={siteData.contact.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl text-sm font-sans font-semibold text-white border transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-              style={{ borderColor: 'rgba(255,255,255,0.14)', backgroundColor: 'rgba(255,255,255,0.05)' }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = '#93c5fd';
-                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'rgba(37,99,235,0.12)';
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.14)';
-                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'rgba(255,255,255,0.05)';
-              }}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl text-sm font-sans font-bold text-white transition-all duration-200 hover:-translate-y-0.5 shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              style={{ background: '#1A9E48' }}
             >
-              in&nbsp; {siteData.contact.linkedinHandle} ↗
+              in &nbsp;{siteData.contact.linkedinHandle} ↗
             </a>
           </motion.div>
 
@@ -584,10 +530,10 @@ function ContactSection() {
             className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pt-8 border-t"
             style={{ borderColor: 'rgba(255,255,255,0.08)' }}
           >
-            <p className="font-sans text-sm" style={{ color: 'rgba(255,255,255,0.25)' }}>
+            <p className="font-sans text-sm" style={{ color: 'rgba(255,255,255,0.28)' }}>
               {siteData.contact.closingLine}
             </p>
-            <p className="font-sans text-sm" style={{ color: 'rgba(255,255,255,0.25)' }}>
+            <p className="font-sans text-sm" style={{ color: 'rgba(255,255,255,0.28)' }}>
               © 2026 Gil Silva
             </p>
           </div>

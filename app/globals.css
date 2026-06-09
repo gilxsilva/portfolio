@@ -3,12 +3,12 @@
 @theme {
   /* ── Palette ── */
   --color-ink: #18120E;
-  --color-canvas: #FDFCF9;
-  --color-accent: #7C3AED;
-  --color-accent-dark: #6D28D9;
-  --color-muted: #71716C;
-  --color-surface: #F3F0EA;
-  --color-surface-dark: #E5E0D6;
+  --color-canvas: #EEECEA;
+  --color-accent: #3B82C4;
+  --color-accent-dark: #2563A8;
+  --color-muted: #6B6762;
+  --color-surface: #E5E3E0;
+  --color-surface-dark: #D8D5D0;
   --color-ink-subtle: #3D3936;
 
   /* ── Typography ── */
@@ -73,7 +73,7 @@ body {
 
 @media (prefers-reduced-motion: no-preference) {
   .card-lift {
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease;
   }
   .card-lift:hover {
     transform: translateY(-5px);

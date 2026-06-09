@@ -27,21 +27,18 @@ export function Nav() {
   }, []);
 
   return (
-    <header
-      id="main-nav"
-      className="fixed top-0 left-0 right-0 z-50 px-4 pt-3"
-    >
+    <header id="main-nav" className="fixed top-0 left-0 right-0 z-50 px-4 pt-3">
       <nav
         className={`max-w-5xl mx-auto px-5 h-13 flex items-center justify-between rounded-2xl transition-all duration-300 ${
           scrolled
-            ? 'bg-white/85 backdrop-blur-xl border border-surface-dark shadow-lg shadow-ink/[0.06]'
+            ? 'bg-white/90 backdrop-blur-xl border border-surface-dark shadow-lg shadow-ink/[0.07]'
             : ''
         }`}
         aria-label="Main navigation"
       >
         <a
           href="#"
-          className="font-display font-bold text-[1.05rem] text-ink tracking-tight hover:text-accent transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent rounded-lg px-1"
+          className="font-display font-bold text-[1.05rem] text-ink tracking-tight hover:text-accent transition-colors duration-200 rounded-lg px-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           aria-label="Gil Silva — back to top"
         >
           GS
@@ -62,8 +59,8 @@ export function Nav() {
             href={siteData.links.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 text-sm font-sans font-semibold px-4 py-2.5 text-white rounded-xl hover:-translate-y-0.5 transition-all duration-200 shadow-md"
-            style={{ background: 'linear-gradient(135deg, #7C3AED 0%, #4F46E5 60%, #2563EB 100%)' }}
+            className="ml-2 text-sm font-sans font-bold px-4 py-2.5 text-white rounded-xl hover:-translate-y-0.5 transition-all duration-200 shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            style={{ background: 'linear-gradient(135deg, #3B82C4 0%, #1D6DB0 100%)' }}
           >
             Résumé ↗
           </a>
@@ -95,7 +92,7 @@ export function Nav() {
             <a
               key={link.href}
               href={link.href}
-              className="py-3 px-4 text-base font-sans font-medium text-ink hover:text-accent hover:bg-violet-50 rounded-xl transition-all duration-150"
+              className="py-3 px-4 text-base font-sans font-medium text-ink hover:text-accent hover:bg-blue-50 rounded-xl transition-all duration-150"
               tabIndex={menuOpen ? 0 : -1}
               onClick={() => setMenuOpen(false)}
             >
@@ -106,8 +103,8 @@ export function Nav() {
             href={siteData.links.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 py-3 px-4 text-sm font-sans font-semibold text-center text-white rounded-xl transition-all duration-200"
-            style={{ background: 'linear-gradient(135deg, #7C3AED 0%, #2563EB 100%)' }}
+            className="mt-2 py-3 px-4 text-sm font-sans font-bold text-center text-white rounded-xl transition-all duration-200"
+            style={{ background: 'linear-gradient(135deg, #3B82C4 0%, #1D6DB0 100%)' }}
             tabIndex={menuOpen ? 0 : -1}
             onClick={() => setMenuOpen(false)}
           >

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" fill="none">
+  <!-- Shirt -->
+  <path d="M20 260 L20 202 C20 176 42 162 70 157 L100 152 L130 157 C158 162 180 176 180 202 L180 260 Z" fill="#3B82C4"/>
+  <path d="M100 152 L86 167 L100 175 L114 167 Z" fill="#2563AB"/>
+  <!-- Neck -->
+  <rect x="87" y="143" width="26" height="22" rx="11" fill="#C07040"/>
+  <!-- Head shadow -->
+  <ellipse cx="100" cy="112" rx="53" ry="56" fill="#A85E2A"/>
+  <!-- Head -->
+  <ellipse cx="100" cy="108" rx="53" ry="56" fill="#C87840"/>
+  <!-- Hair base -->
+  <path d="M47 82 C47 42 74 24 100 24 C126 24 153 42 153 82 C148 62 130 48 100 46 C70 48 52 62 47 82 Z" fill="#180A04"/>
+  <!-- Hair top -->
+  <path d="M55 70 C60 38 80 28 100 28 C120 28 140 38 145 70 C136 50 118 42 100 42 C82 42 64 50 55 70 Z" fill="#220E06"/>
+  <!-- Hair fade on sides -->
+  <path d="M47 82 C45 96 47 110 51 118 C50 108 50 96 53 86 Z" fill="#180A04"/>
+  <path d="M153 82 C155 96 153 110 149 118 C150 108 150 96 147 86 Z" fill="#180A04"/>
+  <!-- Left ear -->
+  <path d="M47 108 C38 102 33 112 35 123 C37 132 44 134 50 130 C48 122 47 114 47 108 Z" fill="#BF7040"/>
+  <!-- Right ear -->
+  <path d="M153 108 C162 102 167 112 165 123 C163 132 156 134 150 130 C152 122 153 114 153 108 Z" fill="#BF7040"/>
+  <!-- Inner ear shading -->
+  <ellipse cx="40" cy="118" rx="4" ry="6" fill="#A85C30" opacity="0.5"/>
+  <ellipse cx="160" cy="118" rx="4" ry="6" fill="#A85C30" opacity="0.5"/>
+  <!-- Left brow -->
+  <path d="M70 88 C77 81 87 81 92 86" stroke="#180A04" stroke-width="4" stroke-linecap="round"/>
+  <!-- Right brow -->
+  <path d="M108 86 C113 81 123 81 130 88" stroke="#180A04" stroke-width="4" stroke-linecap="round"/>
+  <!-- Left eye white -->
+  <ellipse cx="81" cy="100" rx="11" ry="10" fill="white"/>
+  <!-- Right eye white -->
+  <ellipse cx="119" cy="100" rx="11" ry="10" fill="white"/>
+  <!-- Left iris -->
+  <circle cx="82" cy="101" r="7" fill="#2C1008"/>
+  <!-- Right iris -->
+  <circle cx="120" cy="101" r="7" fill="#2C1008"/>
+  <!-- Left pupil -->
+  <circle cx="82" cy="101" r="4" fill="#060200"/>
+  <!-- Right pupil -->
+  <circle cx="120" cy="101" r="4" fill="#060200"/>
+  <!-- Eye shines -->
+  <circle cx="85" cy="97.5" r="2.2" fill="white"/>
+  <circle cx="123" cy="97.5" r="2.2" fill="white"/>
+  <!-- Nose -->
+  <path d="M94 116 C97 122 103 122 106 116" stroke="#9E5020" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Mouth open -->
+  <path d="M79 130 C87 144 113 144 121 130 C115 140 85 140 79 130 Z" fill="#6E1E0C"/>
+  <!-- Teeth -->
+  <path d="M83 131 C89 140 111 140 117 131 C113 137 87 137 83 131 Z" fill="white"/>
+  <!-- Smile line -->
+  <path d="M79 130 C87 144 113 144 121 130" stroke="#6E1E0C" stroke-width="1.5" fill="none"/>
+  <!-- Cheek blush -->
+  <ellipse cx="66" cy="116" rx="13" ry="9" fill="#E06855" opacity="0.28"/>
+  <ellipse cx="134" cy="116" rx="13" ry="9" fill="#E06855" opacity="0.28"/>
+</svg>
