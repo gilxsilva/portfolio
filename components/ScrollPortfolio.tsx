@@ -157,7 +157,7 @@ function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* ── Right: bitmoji card + floating stadium pills ── */}
+          {/* ── Right: floating stadium pills ── */}
           <motion.div
             className="hidden lg:flex items-center justify-center"
             initial={{ opacity: 0, y: 22 }}
@@ -165,27 +165,7 @@ function HeroSection() {
             transition={{ duration: 0.68, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
             aria-hidden="true"
           >
-            {/*
-             * Bitmoji card — same rounded card style as the Dayo reference.
-             * Replace /public/bitmoji.svg with your own Bitmoji PNG/SVG any time.
-             */}
             <div className="relative" style={{ width: 400, height: 440 }}>
-
-              {/* Memoji — transparent PNG floats on the neutral bg */}
-              <img
-                src="/bitmoji.png"
-                alt="Gil Silva Memoji"
-                width={300}
-                height={320}
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 object-contain drop-shadow-2xl select-none"
-                style={{ width: 300, height: 320 }}
-                onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).src = '/bitmoji.svg';
-                  (e.currentTarget as HTMLImageElement).onerror = () => {
-                    (e.currentTarget as HTMLImageElement).src = '/avatar.svg';
-                  };
-                }}
-              />
 
               {/* Floating stadium pills — color is the accent, not the background */}
               <StadiumPill
