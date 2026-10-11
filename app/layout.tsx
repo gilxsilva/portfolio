@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Fraunces, Plus_Jakarta_Sans } from 'next/font/google';
-import { Providers } from '@/components/layout/Providers';
+import { siteDescription, siteName, siteUrl } from '@/lib/metadata';
 import './globals.css';
 
 const fraunces = Fraunces({
@@ -18,20 +18,26 @@ const jakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Gil Silva, Engineer & Designer',
-  description:
-    'Symbolic Systems + HCI student at Stanford. 3× Amazon SDE Intern. Building human-centered technology.',
+  metadataBase: new URL(siteUrl()),
+  title: {
+    default: 'Gil Silva, Software Engineer & Designer',
+    template: `%s · ${siteName}`,
+  },
+  description: siteDescription,
+  alternates: { canonical: '/' },
   openGraph: {
-    title: 'Gil Silva, Engineer & Designer',
-    description:
-      'Symbolic Systems + HCI at Stanford. 3× Amazon SDE Intern. Building technology that empowers people.',
+    title: 'Gil Silva, Software Engineer & Designer',
+    description: siteDescription,
+    url: '/',
+    siteName,
     type: 'website',
     locale: 'en_US',
   },
+  twitter: { card: 'summary_large_image' },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#FDFCF9',
+  themeColor: '#F1ECE3',
 };
 
 export default function RootLayout({
@@ -44,9 +50,7 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${jakartaSans.variable}`}
     >
-      <body className="bg-canvas text-ink font-sans antialiased" style={{ backgroundColor: '#FDFCF9' }}>
-        <Providers>{children}</Providers>
-      </body>
+      <body className="bg-paper font-sans text-ink antialiased">{children}</body>
     </html>
   );
 }

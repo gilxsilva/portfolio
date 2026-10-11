@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   images: {
-    unoptimized: true,
+    // Album art hosts for lib/onRepeat.ts (Spotify and Apple Music).
+    remotePatterns: [
+      { protocol: 'https', hostname: 'i.scdn.co' },
+      { protocol: 'https', hostname: '*.mzstatic.com' },
+    ],
   },
-  // GitHub Pages: add basePath: '/repo-name' if not deploying to a root domain
-  // Vercel: remove the two lines above for native image optimization
 };
 
 export default nextConfig;
