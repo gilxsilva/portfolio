@@ -49,7 +49,10 @@ export default function NowPage() {
                     </p>
                   )}
                   <h3 className="font-display text-xl font-bold leading-snug">{song.title}</h3>
-                  <p className="text-muted">{song.artist}</p>
+                  <p className="text-muted">
+                    {song.artist}
+                    {song.album && <span className="italic"> · {song.album}</span>}
+                  </p>
                   {song.chapter && (
                     <p className="mt-3 text-xs font-bold uppercase tracking-[0.18em] text-ink">{song.chapter}</p>
                   )}

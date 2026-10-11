@@ -6,6 +6,7 @@ export interface Song {
   title: string;
   artist: string;
   url: string;
+  album?: string;
   /** Where and when this song was on repeat, e.g. "Summer · Seattle". */
   chapter?: string;
   note?: string;
@@ -19,6 +20,8 @@ export const onRepeat: Song[] = [
   {
     title: "She's Electric",
     artist: "Oasis",
+    album: "(What's the Story) Morning Glory?",
+    art: "/music/morning-glory.jpg",
     chapter: "Senior year · Stanford",
     note: "Senior year at Stanford! Can't believe how fast it's gone. That intro gets me every time, and I know it's going to be my #1 on my Spotify Wrapped.",
     url: spotifySearch("She's Electric Oasis"),
@@ -27,6 +30,8 @@ export const onRepeat: Song[] = [
   {
     title: "Champagne Supernova",
     artist: "Oasis",
+    album: "(What's the Story) Morning Glory?",
+    art: "/music/morning-glory.jpg",
     chapter: "Summer · Ireland",
     note: "Ended my summer in Ireland! Spent my nights at pubs listening to live music, and whenever local artists played this one, the whole place went crazy.",
     url: spotifySearch("Champagne Supernova Oasis"),
@@ -34,6 +39,8 @@ export const onRepeat: Song[] = [
   {
     title: "Me Va a Costar",
     artist: "Kevin Kaarl",
+    album: "me va a costar (single)",
+    art: "/music/me-va-a-costar.jpg",
     chapter: "Summer · Seattle",
     note: "Spent 12 weeks in Seattle this summer and brought my guitar! Got back into songwriting and always started my sessions with this one. The lyrics are so sad but it's honestly my favorite song to play.",
     url: spotifySearch("Me Va a Costar Kevin Kaarl"),
@@ -41,6 +48,8 @@ export const onRepeat: Song[] = [
   {
     title: "Sarà perché ti amo",
     artist: "Ricchi e Poveri",
+    album: "...E Penso A Te",
+    art: "/music/e-penso-a-te.jpg",
     chapter: "Study abroad · Italy",
     note: "Three months in Florence, and this song followed me everywhere. A street performer would start playing, a crowd would form, and suddenly I was dancing in a piazza with people I'd never met.",
     url: spotifySearch("Sarà perché ti amo Ricchi e Poveri"),
