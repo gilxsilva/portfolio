@@ -6,11 +6,11 @@ const btn =
 
 function AlbumCover() {
   return (
-    <div className="flex justify-center lg:justify-start" aria-hidden="true">
-      <div className="relative w-[min(62vw,23rem)] -translate-x-[14%] lg:translate-x-0">
+    <div className="flex justify-center md:justify-start" aria-hidden="true">
+      <div className="@container relative w-[min(62vw,23rem)] -translate-x-[14%] md:w-[min(28vw,23rem)] md:translate-x-0">
         <Vinyl className="absolute top-[3%] left-[36%] w-[94%]" />
-        <div className="@container relative flex aspect-square flex-col justify-between overflow-hidden rounded-[4px] bg-label p-5 text-paper shadow-2xl shadow-ink/30 sm:p-7">
-          <div className="flex justify-between text-[10px] font-bold uppercase tracking-[0.28em] sm:text-xs">
+        <div className="@container relative flex aspect-square flex-col justify-between overflow-hidden rounded-[4px] bg-label p-[7.5cqw] text-paper shadow-2xl shadow-ink/30">
+          <div className="flex justify-between whitespace-nowrap text-[clamp(8px,3.3cqw,12px)] font-bold uppercase tracking-[0.28em]">
             <span>{siteData.name}</span>
             <span>Vol. 1</span>
           </div>
@@ -19,12 +19,12 @@ function AlbumCover() {
             <br />
             <span className="font-normal italic">y</span> Diseñador
           </p>
-          <div className="flex items-end justify-between text-[10px] font-bold uppercase tracking-[0.28em] sm:text-xs">
+          <div className="flex items-end justify-between whitespace-nowrap text-[clamp(8px,3.3cqw,12px)] font-bold uppercase tracking-[0.28em]">
             <span>Side A · Side B</span>
             <span>2027</span>
           </div>
         </div>
-        <span className="absolute -top-5 right-5 flex size-16 rotate-12 items-center justify-center rounded-full bg-paper text-center text-[9px] font-extrabold uppercase leading-tight tracking-wider text-ink shadow-lg ring-1 ring-line sm:size-20 sm:text-[10px]">
+        <span className="absolute -top-[6%] right-[5%] flex size-[22%] rotate-12 items-center justify-center rounded-full bg-paper text-center text-[clamp(7px,2.6cqw,10px)] font-extrabold uppercase leading-tight tracking-wider text-ink shadow-lg ring-1 ring-line">
           SWE
           <br />+ Design
         </span>
@@ -41,11 +41,12 @@ export function Hero() {
       aria-labelledby="hero-name"
       className="relative overflow-hidden pt-28 pb-20 outline-none sm:pt-36 sm:pb-28"
     >
-      <div className="mx-auto grid max-w-6xl items-center gap-14 px-6 lg:grid-cols-[1.1fr_1fr]">
+      <div className="mx-auto grid max-w-6xl items-center gap-14 px-6 md:grid-cols-[1.1fr_1fr] md:gap-8 lg:gap-14">
         <div>
           <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-label-ink">
             <span className="size-2 rounded-full bg-emerald-600" aria-hidden="true" />
-            New release · {siteData.availability}
+            <span className="hidden sm:inline">New release · </span>
+            {siteData.availability}
           </p>
           <h1
             id="hero-name"
@@ -55,7 +56,7 @@ export function Hero() {
             {siteData.name}
           </h1>
           <p className="mt-3 font-display text-2xl italic text-ink-soft">
-            {siteData.albumTitle} <span className="text-base not-italic text-muted">· {siteData.volume}</span>
+            {siteData.albumTitle} <span className="whitespace-nowrap text-base not-italic text-muted">· {siteData.volume}</span>
           </p>
           <p className="mt-6 max-w-md text-lg leading-relaxed">{siteData.tagline}</p>
           <ul className="mt-6 flex flex-wrap gap-2">

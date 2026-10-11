@@ -21,7 +21,7 @@ export function Extras({ posts }: { posts: Post[] | null }) {
                 More on /now
               </Link>
             </div>
-            <ul className="mt-4 grid max-w-md grid-cols-3 gap-4">
+            <ul className="mt-4 grid max-w-md gap-3 sm:grid-cols-3 sm:gap-4">
               {onRepeat.slice(0, 3).map((song, i) => (
                 <li key={`${song.title}-${i}`}>
                   <SongCard song={song} index={i} />

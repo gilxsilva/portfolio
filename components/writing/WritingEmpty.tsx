@@ -7,7 +7,7 @@ export function WritingEmpty() {
       <div>
         <p className="font-display text-lg font-bold">No B-sides pressed yet.</p>
         <p className="mt-1 text-sm text-muted">
-          New posts from Substack will show up here. Check back soon, or say hola below.
+          New posts from Substack will show up here. Check back soon.
         </p>
       </div>
     </div>

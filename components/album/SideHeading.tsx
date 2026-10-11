@@ -21,7 +21,7 @@ export function SideHeading({
         <p className={`text-xs font-bold uppercase tracking-[0.22em] ${dark ? 'text-label' : 'text-label-ink'}`}>
           {side}
         </p>
-        <h2 id={id} className="mt-1 font-display text-4xl font-bold tracking-tight sm:text-5xl">
+        <h2 id={id} className="mt-1 font-display text-4xl font-bold tracking-tight text-balance sm:text-5xl">
           {title}
         </h2>
       </div>

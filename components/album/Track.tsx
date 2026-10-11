@@ -22,7 +22,7 @@ export function Track({
 }) {
   return (
     <details className="track group border-b border-line" open={defaultOpen}>
-      <summary className="-mx-3 grid cursor-pointer grid-cols-[2rem_1fr_auto] items-baseline gap-x-3 rounded-xl px-3 py-5 transition-colors hover:bg-paper-deep sm:grid-cols-[2.75rem_1fr_auto_1.25rem] sm:gap-x-4">
+      <summary className="-mx-3 grid cursor-pointer grid-cols-[2rem_1fr] items-baseline gap-x-3 rounded-xl px-3 py-5 transition-colors hover:bg-paper-deep sm:grid-cols-[2.75rem_1fr_auto_1.25rem] sm:gap-x-4">
         <span className="font-display text-lg tabular-nums text-muted">{String(number).padStart(2, '0')}</span>
         <span className="min-w-0">
           <span className="font-display text-lg font-bold leading-snug sm:text-xl">{title}</span>
@@ -32,7 +32,9 @@ export function Track({
           )}
           {credits && <span className="mt-1 block text-sm text-muted">{credits}</span>}
         </span>
-        <span className="whitespace-nowrap text-right text-xs tabular-nums text-muted sm:text-sm">{duration}</span>
+        <span className="col-start-2 mt-1 text-xs tabular-nums text-muted empty:hidden sm:col-start-auto sm:mt-0 sm:whitespace-nowrap sm:text-right sm:text-sm sm:empty:block">
+          {duration}
+        </span>
         <Plus
           aria-hidden="true"
           size={18}

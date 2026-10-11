@@ -110,7 +110,7 @@ export function SideB() {
           {bonusTracks.map((track, i) => (
             <li
               key={track.title}
-              className="grid grid-cols-[2rem_1fr_auto] items-baseline gap-x-3 border-b border-line py-4 sm:grid-cols-[2.75rem_1fr_auto] sm:gap-x-4"
+              className="grid grid-cols-[2rem_1fr] items-baseline gap-x-3 border-b border-line py-4 sm:grid-cols-[2.75rem_1fr_auto] sm:gap-x-4"
             >
               <span className="font-display tabular-nums text-muted">
                 {String(projects.length + i + 1).padStart(2, '0')}
@@ -119,7 +119,7 @@ export function SideB() {
                 <span className="font-display font-bold">{track.title}</span>
                 <span className="mt-0.5 block text-sm text-muted">{track.description}</span>
               </span>
-              <span className="whitespace-nowrap text-right text-xs tabular-nums text-muted sm:text-sm">
+              <span className="col-start-2 mt-1 text-xs tabular-nums text-muted sm:col-start-auto sm:mt-0 sm:whitespace-nowrap sm:text-right sm:text-sm">
                 {track.year} · {track.context}
               </span>
             </li>

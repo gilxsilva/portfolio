@@ -9,7 +9,7 @@ export function PostList({ posts, compact = false }: { posts: Post[]; compact?: 
             href={post.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group -mx-3 grid grid-cols-[2rem_1fr_auto] items-baseline gap-x-3 rounded-xl px-3 py-5 transition-colors hover:bg-paper-deep sm:grid-cols-[2.75rem_1fr_auto] sm:gap-x-4"
+            className="group -mx-3 grid grid-cols-[2rem_1fr] items-baseline gap-x-3 rounded-xl px-3 py-5 transition-colors hover:bg-paper-deep sm:grid-cols-[2.75rem_1fr_auto] sm:gap-x-4"
           >
             <span className="font-display tabular-nums text-muted">{String(i + 1).padStart(2, '0')}</span>
             <span className="min-w-0">
@@ -20,7 +20,7 @@ export function PostList({ posts, compact = false }: { posts: Post[]; compact?: 
               <span className="sr-only"> (opens Substack in a new tab)</span>
             </span>
             {post.date && (
-              <time dateTime={post.date} className="whitespace-nowrap text-xs tabular-nums text-muted sm:text-sm">
+              <time dateTime={post.date} className="col-start-2 mt-1 text-xs tabular-nums text-muted sm:col-start-auto sm:mt-0 sm:whitespace-nowrap sm:text-sm">
                 {formatPostDate(post.date)}
               </time>
             )}

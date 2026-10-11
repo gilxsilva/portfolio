@@ -4,12 +4,14 @@ import { ListMusic, SkipBack, SkipForward } from 'lucide-react';
 import { sections } from '@/lib/sections';
 
 const iconBtn =
-  'rounded-lg p-2 text-paper/75 transition-colors hover:bg-white/10 hover:text-paper disabled:opacity-30 disabled:hover:bg-transparent';
+  'rounded-lg p-1.5 sm:p-2 text-paper/75 transition-colors hover:bg-white/10 hover:text-paper disabled:opacity-30 disabled:hover:bg-transparent';
 
 /** Sticky "now playing" bar: shows the current section, scroll progress, and jumps between sections. */
 export function MiniPlayer() {
   const [active, setActive] = useState(0);
   const [listOpen, setListOpen] = useState(false);
+  // Hidden on the cover so it never covers the hero links; slides in after.
+  const [visible, setVisible] = useState(false);
   const progressRef = useRef<HTMLDivElement>(null);
 
   // Current section: whichever one crosses the middle of the viewport.
@@ -36,6 +38,7 @@ export function MiniPlayer() {
       frame = 0;
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const ratio = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+      setVisible(window.scrollY > window.innerHeight * 0.5);
       if (progressRef.current) progressRef.current.style.transform = `scaleX(${ratio})`;
     };
     const onScroll = () => {
@@ -73,7 +76,12 @@ export function MiniPlayer() {
   const next = sections[active + 1];
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)]">
+    <div
+      inert={!visible}
+      className={`pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] transition-[translate,opacity] duration-300 motion-reduce:transition-none ${
+        visible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+      }`}
+    >
       <nav
         aria-label="Section player"
         className="pointer-events-auto mx-auto max-w-2xl overflow-hidden rounded-2xl bg-vinyl/95 text-paper shadow-2xl shadow-ink/40 ring-1 ring-white/10 backdrop-blur"
@@ -100,10 +108,12 @@ export function MiniPlayer() {
         <div className="h-0.5 bg-white/10">
           <div ref={progressRef} className="h-full origin-left bg-label" style={{ transform: 'scaleX(0)' }} />
         </div>
-        <div className="flex items-center gap-3 px-3 py-2">
+        <div className="flex items-center gap-2 px-3 py-2 sm:gap-3">
           <span className="vinyl spin size-9 shrink-0" aria-hidden="true" />
           <div className="min-w-0 flex-1">
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-paper/50">Now playing · {current.side}</p>
+            <p className="truncate text-[10px] font-bold uppercase tracking-[0.12em] text-paper/50 sm:tracking-[0.2em]"><span className="hidden sm:inline">Now playing · </span>
+              {current.side}
+            </p>
             <p className="truncate font-display font-bold">
               {String(active + 1).padStart(2, '0')} · {current.label}
             </p>

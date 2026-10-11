@@ -21,9 +21,9 @@ const updated = new Date(`${now.updated}T00:00:00Z`).toLocaleDateString('en-US',
 
 export default function NowPage() {
   return (
-    <>
+    <div className="flex min-h-dvh flex-col">
       <SiteHeader />
-      <main className="mx-auto max-w-4xl px-6 pt-36 pb-24">
+      <main className="mx-auto w-full max-w-4xl flex-1 px-6 pt-36 pb-24">
         <PageIntro side="Now" title="On repeat">
           {now.intro}
         </PageIntro>
@@ -82,6 +82,6 @@ export default function NowPage() {
         <p className="mt-16 text-sm text-muted">Last updated {updated}.</p>
       </main>
       <SiteFooter />
-    </>
+    </div>
   );
 }
