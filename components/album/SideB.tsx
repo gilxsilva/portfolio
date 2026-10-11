@@ -50,7 +50,7 @@ export function SideB() {
                 number={i + 1}
                 title={project.title}
                 subtitle={project.tag}
-                credits={[project.context, project.stack && `feat. ${project.stack.join(', ')}`].filter(Boolean).join(' · ')}
+                credits={[project.context, project.team, project.stack && `feat. ${project.stack.join(', ')}`].filter(Boolean).join(' · ')}
                 duration={project.year}
                 gold={Boolean(project.awards?.length)}
               >
@@ -116,8 +116,21 @@ export function SideB() {
                 {String(projects.length + i + 1).padStart(2, '0')}
               </span>
               <span>
-                <span className="font-display font-bold">{track.title}</span>
-                <span className="mt-0.5 block text-sm text-muted">{track.description}</span>
+                {track.href ? (
+                  <a
+                    href={track.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-display font-bold underline decoration-line underline-offset-4 hover:text-label-ink hover:decoration-label"
+                  >
+                    {track.title} ↗
+                  </a>
+                ) : (
+                  <span className="font-display font-bold">{track.title}</span>
+                )}
+                <span className="mt-0.5 block text-sm text-muted">
+                  <Emphasis text={track.description} />
+                </span>
               </span>
               <span className="col-start-2 mt-1 text-xs tabular-nums text-muted sm:col-start-auto sm:mt-0 sm:whitespace-nowrap sm:text-right sm:text-sm">
                 {track.year} · {track.context}
@@ -125,6 +138,18 @@ export function SideB() {
             </li>
           ))}
         </ol>
+
+        <p className="mt-8 text-sm text-muted">
+          Full liner notes, team credits, and attachments for every project live on{' '}
+          <a
+            href={siteData.links.linkedinProjects}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-label-ink underline underline-offset-4 hover:text-ink"
+          >
+            LinkedIn ↗
+          </a>
+        </p>
       </div>
     </section>
   );

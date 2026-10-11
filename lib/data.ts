@@ -16,6 +16,8 @@ export interface Project {
   tag: string;
   year?: string;
   context: string;
+  /** e.g. "Team of 4". */
+  team?: string;
   stack?: string[];
   /** Cover color used when there is no screenshot. */
   color: string;
@@ -34,6 +36,7 @@ export interface BonusTrack {
   description: string;
   year: string;
   context: string;
+  href?: string;
 }
 
 export interface Award {
@@ -55,6 +58,7 @@ export const siteData = {
     github: "https://github.com/gilxsilva",
     email: "gscgilbertosilva@gmail.com",
     resume: "/Gil_Silva_Resume.pdf",
+    linkedinProjects: "https://www.linkedin.com/in/gilxsilva/details/projects/",
   },
 
   experience: [
@@ -114,22 +118,29 @@ export const siteData = {
       tag: "HCI · Voice AI",
       year: "2025",
       context: "Stanford CS147",
+      team: "Team of 4",
+      stack: ["Figma", "React", "Voice AI"],
       color: "#3A4FA8",
-      problem: "Calendars schedule time, but people run on energy. Most planners ignore how you actually feel.",
-      built: "Prototyped a voice-AI scheduling app that reads emotional state and energy level, then plans the day around it.",
-      outcome: "Placed in the top 6 of 23 teams in Stanford CS147 and won Best Concept and Most Novel Product.",
-      awards: ["Top 6 of 23", "Best Concept", "Most Novel Product"],
+      problem: "Your calendar knows when you're free, not when you have the energy. In our user research, people blamed missed goals on unexpected drops in energy, something no scheduling tool plans around.",
+      built: "Went from needfinding to Figma and React prototypes for an app that uses voice-AI reflections to learn which people, places, and patterns drain or restore you, then suggests rescheduling when your energy and your calendar don't match.",
+      outcome: "**Top 6** of **23** projects at the CS147 Expo, winning Best Concept and Most Novel Product. Our concept video also won Best Soundtrack.",
+      awards: ["Top 6 of 23", "Best Concept", "Most Novel Product", "Best Soundtrack"],
+      liveUrl: "https://web.stanford.edu/class/cs147/projects/DesignforMentalWellbeing/Kyro/",
+      githubUrl: "https://github.com/gilxsilva/kyro-app",
     },
     {
       id: "gem",
       title: "GEM",
       tag: "Mobile · Social",
-      context: "Stanford CS 278",
+      year: "2026",
+      context: "Stanford CS 278 · Social Computing",
+      team: "Team of 3",
       stack: ["React Native", "Expo", "Supabase"],
       color: "#1F7A52",
-      problem: "Anonymous reviews are noisy. The places worth going usually come from friends you trust.",
-      built: "Designed the database schema and built posting, saving, commenting, reporting, and onboarding for a friend-sourced recommendations app.",
-      outcome: "A working mobile app for trusted, friend-sourced place recommendations.",
+      problem: "Rating apps surface what's popular, not what's meaningful. The best cafés, study spots, and views usually come from friends you trust.",
+      built: "Designed the database schema and built posting gems, browsing places, saving, commenting, reporting, onboarding, and profiles in a mobile-first app. Also shaped the product design, UX, and technical architecture.",
+      outcome: "A working app that explores trust, social context, community norms, and safety, so recommendations feel personal instead of algorithmic.",
+      githubUrl: "https://github.com/gilxsilva/gem-cs278",
     },
     {
       id: "maternal-health",
@@ -137,37 +148,54 @@ export const siteData = {
       tag: "Global Health · AI",
       year: "2025",
       context: "Stanford CS+Social Good",
+      team: "Team of 5",
       color: "#2C7DB8",
-      problem: "Community health workers in the rural Philippines need to catch postpartum hemorrhage early, often with little or no connectivity.",
-      built: "An offline-capable triage tool and multilingual chatbot in English, Tagalog, and Bisaya.",
-      outcome: "Built with VSee for community health workers through Stanford CS+Social Good.",
+      problem: "Postpartum hemorrhage causes over **70,000** maternal deaths worldwide each year. Midwives in the rural Philippines work with limited internet, many languages, and low tech literacy.",
+      built: "Interviewed medical students and community midwives, then designed an offline-capable triage system and a multilingual AI chatbot (English, Tagalog, Bisaya) for emergency guidance, education, and risk assessment.",
+      outcome: "A human-centered tool built with telehealth company VSee, designed for sustainable use in low-resource health systems.",
     },
     {
       id: "finding-our-voice",
       title: "Finding Our Voice",
       tag: "Community · EdTech",
       year: "2022–present",
-      context: "826 Valencia, San Francisco",
+      context: "With 826 Valencia, San Francisco",
+      team: "Co-founded with 2 others",
       color: "#B4441A",
-      problem: "Newly arrived immigrant students had no space to practice English outside the classroom.",
-      built: "Co-founded the program from scratch: curriculum, partnerships, and volunteer training.",
-      outcome: "Serves **30+** newcomer students at 826 Valencia, backed by a **$10K grant**.",
+      problem: "**23%** of students at my San Francisco high school were newcomer English learners, with scattered support and few Spanish-speaking mentors. I knew that confusion firsthand.",
+      built: "Co-founded a program with 826 Valencia where newcomer, immigrant, refugee, and undocumented students learn English in a dynamic way, find community, and get resources to pursue college.",
+      outcome: "Backed by a **$10K** Youth Funding Youth Ideas grant, it helped **30+** newcomer students in its first semester and still runs today.",
       awards: ["$10K grant"],
+      liveUrl: "https://gilxsilva.github.io/finding-our-voice/",
     },
   ] as Project[],
 
   bonusTracks: [
     {
-      title: "Operation Lone Star Hub",
-      description: "Digital advocacy platform built from a Stanford border-law course.",
+      title: "Chrona",
+      description: "All-in-one academic dashboard for students, built at HackHarvard.",
       year: "2025",
-      context: "Stanford Law",
+      context: "HackHarvard",
+      href: "https://github.com/gilxsilva/hackharvard-2025",
+    },
+    {
+      title: "Operation Lone Star Hub",
+      description: "Advocacy site on the human rights impact of Texas' Operation Lone Star: research, visualizations, and a social media toolkit.",
+      year: "2025",
+      context: "Stanford LAWGEN 118Q",
+      href: "https://gilxsilva.github.io/ols-advocacy-hub/",
+    },
+    {
+      title: "Cash Transfers & Teacher Burnout",
+      description: "Randomized controlled trial proposal testing unconditional cash transfers as a way to reduce K-12 teacher burnout.",
+      year: "2024",
+      context: "Stanford DATASCI 154",
     },
     {
       title: "AstroNerds",
-      description: "Research + AI math chatbot studying peer vs. instructor learning models.",
+      description: "Found students scored higher with peer explanations (**92%** vs. **86%**), then prototyped an AI math chatbot that acts like a peer.",
       year: "2024",
-      context: "Stanford Research",
+      context: "Stanford CS 53N",
     },
     {
       title: "Deserver Art",
