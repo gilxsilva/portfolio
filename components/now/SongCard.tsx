@@ -30,9 +30,17 @@ export function SongArt({ song, index, size }: { song: Song; index: number; size
 export function SongCard({ song, index }: { song: Song; index: number }) {
   return (
     <a href={song.url} target="_blank" rel="noopener noreferrer" className="group block">
-      <SongArt song={song} index={index} size={240} />
+      <span className="relative block">
+        <SongArt song={song} index={index} size={240} />
+        {song.nowPlaying && (
+          <span className="absolute top-1.5 left-1.5 rounded-full bg-ink/85 px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.14em] text-paper">
+            Now playing
+          </span>
+        )}
+      </span>
       <span className="mt-2 block truncate font-display font-bold group-hover:text-label-ink">{song.title}</span>
       <span className="block truncate text-sm text-muted">{song.artist}</span>
+      {song.chapter && <span className="mt-0.5 block truncate text-xs text-muted">{song.chapter}</span>}
       <span className="sr-only"> (opens in a new tab)</span>
     </a>
   );

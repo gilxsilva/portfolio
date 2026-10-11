@@ -33,23 +33,36 @@ export default function NowPage() {
           </h2>
           <ol>
             {onRepeat.map((song, i) => (
-              <li key={`${song.title}-${i}`} className="border-b border-line">
-                <a
-                  href={song.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group -mx-3 grid grid-cols-[2rem_3.5rem_1fr_auto] items-center gap-x-4 rounded-xl px-3 py-3 transition-colors hover:bg-paper-deep"
-                >
-                  <span className="font-display tabular-nums text-muted">{String(i + 1).padStart(2, '0')}</span>
-                  <SongArt song={song} index={i} size={112} />
-                  <span className="min-w-0">
-                    <span className="block truncate font-display text-lg font-bold group-hover:text-label-ink">{song.title}</span>
-                    <span className="block truncate text-sm text-muted">{song.artist}</span>
-                  </span>
-                  <span className="text-sm font-bold text-label-ink">
-                    Listen ↗<span className="sr-only"> (opens in a new tab)</span>
-                  </span>
-                </a>
+              <li
+                key={`${song.title}-${i}`}
+                className="grid grid-cols-[2rem_1fr] gap-x-3 border-b border-line py-6 sm:grid-cols-[2.75rem_7rem_1fr] sm:gap-x-5"
+              >
+                <span className="font-display tabular-nums text-muted">{String(i + 1).padStart(2, '0')}</span>
+                <div className="mb-4 w-24 sm:mb-0 sm:w-auto">
+                  <SongArt song={song} index={i} size={224} />
+                </div>
+                <div className="col-start-2 min-w-0 sm:col-start-3">
+                  {song.nowPlaying && (
+                    <p className="mb-1 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-label-ink">
+                      <span className="size-1.5 rounded-full bg-label" aria-hidden="true" />
+                      Now playing
+                    </p>
+                  )}
+                  <h3 className="font-display text-xl font-bold leading-snug">{song.title}</h3>
+                  <p className="text-muted">{song.artist}</p>
+                  {song.chapter && (
+                    <p className="mt-3 text-xs font-bold uppercase tracking-[0.18em] text-ink">{song.chapter}</p>
+                  )}
+                  {song.note && <p className="mt-1.5 max-w-xl leading-relaxed text-ink-soft">{song.note}</p>}
+                  <a
+                    href={song.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-block text-sm font-bold text-label-ink underline underline-offset-4 hover:text-ink"
+                  >
+                    Listen ↗<span className="sr-only"> to {song.title} (opens in a new tab)</span>
+                  </a>
+                </div>
               </li>
             ))}
           </ol>
