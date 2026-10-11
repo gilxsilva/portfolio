@@ -184,10 +184,11 @@ export const siteData = {
     ],
     credits: [
       { label: "Recorded in", value: "SF · Chapala · Stanford" },
-      { label: "Studies", value: "Symbolic Systems + HCI, Stanford" },
+      { label: "Studies", value: "Senior, Symbolic Systems + HCI, Stanford" },
       { label: "Sessions", value: "Amazon ('24, '25, '26) · CollegePlanAI" },
       { label: "Instruments", value: "Java · TypeScript · Python · React · Next.js · AWS" },
       { label: "Design", value: "Figma · Prototyping · User research · Accessibility" },
+      { label: "Off the record", value: "Rugby · Guitar · Songwriting" },
       { label: "Early recordings", value: "826 Valencia writer & mentor · Juma Ventures · SFUSD Entrepreneur Fellow" },
     ],
   },

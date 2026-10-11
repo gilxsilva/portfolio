@@ -11,9 +11,8 @@ export interface NowList {
 }
 
 export const now = {
-  updated: "2026-10-10",
+  updated: "2026-10-11",
   intro: "What's on repeat right now: the songs, the builds, the books, and the things I'm learning.",
-  // TODO: replace the placeholder items with your own.
   lists: [
     {
       title: "Building",
@@ -21,11 +20,11 @@ export const now = {
     },
     {
       title: "Reading",
-      items: [{ text: "Placeholder: add a book in lib/now.ts" }],
+      items: [{ text: "Solito by Javier Zamora" }],
     },
     {
       title: "Learning",
-      items: [{ text: "Placeholder: add what you're learning in lib/now.ts" }],
+      items: [{ text: "How to play the harmonica" }],
     },
   ] as NowList[],
 };
