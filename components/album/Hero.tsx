@@ -43,10 +43,9 @@ export function Hero() {
     >
       <div className="mx-auto grid max-w-6xl items-center gap-14 px-6 md:grid-cols-[1.1fr_1fr] md:gap-8 lg:gap-14">
         <div>
-          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-label-ink">
-            <span className="size-2 rounded-full bg-emerald-600" aria-hidden="true" />
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-label-ink">
             <span className="hidden sm:inline">New release · </span>
-            {siteData.availability}
+            {siteData.graduation}
           </p>
           <h1
             id="hero-name"
@@ -59,6 +58,10 @@ export function Hero() {
             {siteData.albumTitle} <span className="whitespace-nowrap text-base not-italic text-muted">· {siteData.volume}</span>
           </p>
           <p className="mt-6 max-w-md text-lg leading-relaxed">{siteData.tagline}</p>
+          <p className="mt-3 flex max-w-md items-baseline gap-2 text-sm font-semibold text-emerald-800">
+            <span className="size-2 shrink-0 translate-y-[-1px] rounded-full bg-emerald-600" aria-hidden="true" />
+            <span className="text-balance">{siteData.availability}</span>
+          </p>
           <ul className="mt-6 flex flex-wrap gap-2">
             {siteData.heroFacts.map((fact) => (
               <li key={fact} className="rounded-full border border-line bg-paper-deep px-3 py-1.5 text-sm font-semibold">

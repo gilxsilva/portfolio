@@ -45,7 +45,8 @@ export const siteData = {
   name: "Gil Silva",
   albumTitle: "Ingeniero y Diseñador",
   volume: "Vol. 1 · 2027",
-  availability: "Available Summer 2027",
+  graduation: "Graduating Dec 2027",
+  availability: "Open to Summer 2027 internships and full-time roles starting 2028.",
   tagline: "Software engineer and designer building technology that empowers people.",
   heroFacts: ["Stanford · Symbolic Systems + HCI", "3× Amazon SDE Intern", "CollegePlanAI · acquired"],
 
@@ -184,7 +185,7 @@ export const siteData = {
     ],
     credits: [
       { label: "Recorded in", value: "SF · Chapala · Stanford" },
-      { label: "Studies", value: "Senior, Symbolic Systems + HCI, Stanford" },
+      { label: "Studies", value: "Symbolic Systems + HCI, Stanford · Graduating December 2027" },
       { label: "Sessions", value: "Amazon ('24, '25, '26) · CollegePlanAI" },
       { label: "Instruments", value: "Java · TypeScript · Python · React · Next.js · AWS" },
       { label: "Design", value: "Figma · Prototyping · User research · Accessibility" },

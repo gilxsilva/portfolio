@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const siteName = 'Gil Silva';
 export const siteDescription =
-  'Software engineer and designer. Stanford Symbolic Systems + HCI. 3× Amazon SDE Intern.';
+  'Software engineer and designer. Stanford Symbolic Systems + HCI, graduating December 2027. 3× Amazon SDE Intern.';
 
 export function siteUrl() {
   if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;

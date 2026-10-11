@@ -24,6 +24,9 @@ export function Encore() {
           {contact.heading}
         </h2>
         <p className="mt-5 max-w-sm text-lg text-paper/65">{contact.subheading}</p>
+        <p className="mt-2 max-w-xl text-sm text-balance text-paper/50">
+          {siteData.graduation} · {siteData.availability}
+        </p>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <a href={`mailto:${links.email}`} className={`${btn} bg-label text-paper`}>
