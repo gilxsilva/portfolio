@@ -1,5 +1,6 @@
 import { SiteFooter, PageIntro } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
+import { NowCards } from '@/components/now/NowCards';
 import { SongArt } from '@/components/now/SongCard';
 import { pageMetadata } from '@/lib/metadata';
 import { now } from '@/lib/now';
@@ -71,28 +72,12 @@ export default function NowPage() {
           </ol>
         </section>
 
-        <div className="mt-16 grid gap-10 sm:grid-cols-3">
-          {now.lists.map((list) => (
-            <section key={list.title} aria-labelledby={`now-${list.title}`}>
-              <h2 id={`now-${list.title}`} className="border-b-2 border-ink pb-3 font-display text-2xl font-bold">
-                {list.title}
-              </h2>
-              <ul className="mt-4 space-y-3 leading-relaxed text-ink-soft">
-                {list.items.map((item) => (
-                  <li key={item.text}>
-                    {item.href ? (
-                      <a href={item.href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-label-ink">
-                        {item.text} ↗
-                      </a>
-                    ) : (
-                      item.text
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ))}
-        </div>
+        <section aria-labelledby="also-heading" className="mt-16">
+          <h2 id="also-heading" className="border-b-2 border-ink pb-3 font-display text-2xl font-bold">
+            Also on repeat
+          </h2>
+          <NowCards lists={now.lists} />
+        </section>
 
         <p className="mt-16 text-sm text-muted">Last updated {updated}.</p>
       </main>
