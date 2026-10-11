@@ -1,3 +1,24 @@
+export interface Project {
+  id: string;
+  title: string;
+  tag: string;
+  description: string;
+  detail: string;
+  year?: string;
+  context?: string;
+  award?: string;
+  liveUrl?: string;
+  githubUrl?: string;
+  image?: string;
+}
+
+export interface OtherWork {
+  title: string;
+  description: string;
+  year: string;
+  context: string;
+}
+
 export const siteData = {
   name: "Gil Silva",
   taglineEs: "Ingeniero y diseñador.",
@@ -6,21 +27,25 @@ export const siteData = {
 
   links: {
     linkedin: "https://linkedin.com/in/gilxsilva",
+    github: "https://github.com/gilxsilva",
     email: "gscgilbertosilva@gmail.com",
-    resume: "/resume.pdf",
+    resume: "/Gil_Silva_Resume.pdf",
   },
 
   about: {
     paragraphs: [
       "Born in San Francisco, raised in Chapala, Jalisco. I came back to the U.S. for Stanford carrying two languages, two cultures, and a conviction that technology should work for everyone, not just the people who build it.",
       "At Stanford, I study Symbolic Systems and HCI because the hardest problems sit at the intersection of how minds work and how systems are designed. My coursework spans AI, cognitive science, linguistics, and HCI. I bring all of it to whatever I build.",
-      "I've shipped production code at Amazon three times, co-founded an English-learning program that still runs at Mission High, and built tools for rural communities in the Philippines. The throughline isn't any specific technology. It's engineering with people, not just for them.",
+      "I've shipped production code at Amazon three times, co-founded an English-learning program that still runs at 826 Valencia, and built tools for rural communities in the Philippines. The throughline isn't any specific technology. It's engineering with people, not just for them.",
     ],
     highlights: [
       { value: "3×", label: "Amazon SDE Intern" },
-      { value: "6+", label: "Projects shipped" },
-      { value: "$10K", label: "Grant awarded" },
-      { value: "EN · ES · IT", label: "Languages" },
+      {
+        value: "3.6M",
+        label: "Silent vendor EDI failures surfaced at Amazon SCOT",
+      },
+      { value: "Acquired", label: "CollegePlanAI, by New Oriental Education" },
+      { value: "$10K", label: "Grant for Finding Our Voice" },
     ],
   },
 
@@ -28,35 +53,35 @@ export const siteData = {
     featured: [
       {
         company: "Amazon",
-        role: "SDE Intern, Summer 2026",
-        period: "Summer 2026",
+        role: "SDE Intern, Supply Chain Optimization Technologies (SCOT)",
+        period: "Jun–Sep 2026",
         description:
-          "Incoming SDE intern. Details coming soon.",
-        tags: ["Java", "AWS"],
+          "Owned end-to-end and launched to pre-production a serverless AWS pipeline (CDK, Step Functions, Lambda, EventBridge) delivering weekly root-cause digests, surfacing the 83% of vendor EDI failures (3.6M of 4.3M) that never reached vendors. Built root-cause clustering plus an Amazon Bedrock LLM agent (cut guardrail blocks 14% to 4%). Shipped it as a Vendor Central tab, projected to cut vendor investigation from 5 hrs to 1/week.",
+        tags: ["Java", "TypeScript", "AWS", "LLMs"],
       },
       {
         company: "Amazon",
-        role: "SDE Intern, Flex Assignment Team",
-        period: "Summer 2025",
+        role: "SDE Intern, Last Mile Stops Team",
+        period: "Jun–Sep 2025",
         description:
-          "Shipped features for the Flex Assignment Team within Amazon's Last Mile delivery network, improving driver-assignment algorithms deployed globally across Amazon Flex.",
-        tags: ["Java", "AWS", "Distributed Systems"],
+          "Replaced 2+ hour delivery-stop investigations with a self-service workflow, eliminating 8+ hrs/week of engineering toil. Shipped 26+ geospatial and package fields to production across Java services, S3, and React.",
+        tags: ["Java", "AWS", "React"],
       },
       {
         company: "Amazon",
-        role: "SDE Intern, Stops Team",
-        period: "Summer 2024",
+        role: "SDE Intern, Last Mile Amazon Flex",
+        period: "Jun–Sep 2024",
         description:
-          "Designed and deployed features for the Stops Team, improving routing and stop-sequencing for Amazon's last-mile delivery at scale.",
-        tags: ["Java", "AWS", "APIs"],
+          "Built a location-preference signal for Flex's assignment optimizer (Java distance-matrix algorithm feeding a Python integer-program solver) and an event-driven S3/SNS/Lambda ingestion pipeline.",
+        tags: ["Java", "Python", "AWS"],
       },
       {
-        company: "CollegePlan",
-        role: "Product Engineering Intern",
-        period: "2023",
+        company: "CollegePlanAI",
+        role: "Full-Stack Software Engineer Intern",
+        period: "May–Nov 2025",
         description:
-          "First engineering intern. Built the AI essay-coaching platform end-to-end: model integration, UI, and product systems. Growth contributed to acquisition by New Oriental Education.",
-        tags: ["React", "Node.js", "AI", "EdTech"],
+          "Primary engineer at a 3-person startup. Built an AI college essay app (Next.js, Supabase, Claude) used by hundreds of students; shipped Stripe, OAuth, and credit-gated AI.",
+        tags: ["Next.js", "Supabase", "Claude", "Stripe"],
         note: "Acquired by New Oriental Education",
       },
     ],
@@ -89,8 +114,18 @@ export const siteData = {
       detail:
         "Prototyped an AI scheduling system that interprets emotional state and energy levels, not just calendar slots. Built for people who think in feelings, not blocks.",
       year: "2025",
-      award: "Best Concept & Most Novel Product, Stanford CS147",
+      award: "Top 6 of 23 · Best Concept & Most Novel Product",
       context: "Stanford CS147",
+    },
+    {
+      id: "gem",
+      title: "GEM",
+      tag: "Mobile · Social",
+      description:
+        "Mobile app for trusted, friend-sourced place recommendations. Designed the database schema and built posting, saving, commenting, reporting, and onboarding.",
+      detail:
+        "Built with React Native, Expo, and Supabase. Recommendations come from people you trust, not anonymous reviews.",
+      context: "Stanford CS 278",
     },
     {
       id: "maternal-health",
@@ -108,46 +143,37 @@ export const siteData = {
       title: "Finding Our Voice",
       tag: "Community · EdTech",
       description:
-        "Co-founded English-learning program for 30+ newcomer immigrant students at Mission High. $10K grant.",
+        "Co-founded English-learning program for 30+ newcomer immigrant students at 826 Valencia. $10K grant.",
       detail:
         "Started as a high school senior noticing that newly arrived students had no space to practice English outside the classroom. Built from scratch: curriculum, partnerships, volunteer training.",
       year: "2022–present",
-      context: "Mission High School, San Francisco",
+      context: "826 Valencia, San Francisco",
     },
+  ] as Project[],
+
+  otherWork: [
     {
-      id: "operation-lone-star",
       title: "Operation Lone Star Hub",
-      tag: "Civic Tech · Legal",
       description:
         "Digital advocacy platform built from a Stanford border-law course.",
-      detail:
-        "Translated legal research on Operation Lone Star into a usable resource for advocates, journalists, and affected communities.",
       year: "2025",
-      context: "Stanford Law Course Project",
+      context: "Stanford Law",
     },
     {
-      id: "astronerds",
       title: "AstroNerds",
-      tag: "EdTech · Research",
       description:
         "Research + AI math chatbot studying peer vs. instructor learning models.",
-      detail:
-        "Investigated whether peer-led AI tutoring produces better learning outcomes than instructor-led models. Built and tested a math chatbot to run the experiment.",
       year: "2024",
-      context: "Stanford Research Project",
+      context: "Stanford Research",
     },
     {
-      id: "deserver-art",
       title: "Deserver Art",
-      tag: "Nonprofit · Product",
       description:
         "Platform paying high school artists fairly. Presented at NNTE Bay Area.",
-      detail:
-        "Connects buyers with young artists from underserved schools, ensuring fair compensation and professional exposure.",
       year: "2022",
       context: "NNTE Bay Area",
     },
-  ],
+  ] as OtherWork[],
 
   skills: {
     engineering: [
@@ -187,7 +213,10 @@ export const siteData = {
     email: "gscgilbertosilva@gmail.com",
     linkedinHandle: "linkedin.com/in/gilxsilva",
     linkedinUrl: "https://linkedin.com/in/gilxsilva",
-    closingLine: "Eyeing NYC. Open to Europe. Honestly, anywhere good work is happening.",
+    githubHandle: "github.com/gilxsilva",
+    githubUrl: "https://github.com/gilxsilva",
+    closingLine:
+      "Eyeing NYC. Open to Europe. Honestly, anywhere good work is happening.",
     closingLineSub: "Remote works too.",
   },
 };

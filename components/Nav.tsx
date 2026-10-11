@@ -39,7 +39,7 @@ export function Nav() {
         <a
           href="#"
           className="font-display font-bold text-[1.05rem] text-ink tracking-tight hover:text-accent transition-colors duration-200 rounded-lg px-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          aria-label="Gil Silva — back to top"
+          aria-label="Gil Silva, back to top"
         >
           GS
         </a>
@@ -55,6 +55,14 @@ export function Nav() {
               {link.label}
             </a>
           ))}
+          <a
+            href={siteData.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-sans font-medium text-muted hover:text-ink px-4 py-2 rounded-xl hover:bg-surface transition-all duration-200"
+          >
+            GitHub ↗
+          </a>
           <a
             href={siteData.links.resume}
             target="_blank"
@@ -99,6 +107,16 @@ export function Nav() {
               {link.label}
             </a>
           ))}
+          <a
+            href={siteData.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="py-3 px-4 text-base font-sans font-medium text-ink hover:text-accent hover:bg-blue-50 rounded-xl transition-all duration-150"
+            tabIndex={menuOpen ? 0 : -1}
+            onClick={() => setMenuOpen(false)}
+          >
+            GitHub ↗
+          </a>
           <a
             href={siteData.links.resume}
             target="_blank"

@@ -121,7 +121,7 @@ function HeroSection() {
             <motion.div variants={fadeUp} className="flex flex-wrap gap-2 mb-7">
               <CredPill emojiSrc="/emoji/graduation_cap.png" label="Stanford"              bg="#3A5FCC" />
               <CredPill emojiSrc="/emoji/package.png"        label="3× Amazon SDE"         bg="#D05C14" />
-              <CredPill emojiSrc="/emoji/sparkles.png"       label="CollegePlan · acquired" bg="#B82840" />
+              <CredPill emojiSrc="/emoji/sparkles.png"       label="CollegePlanAI · acquired" bg="#B82840" />
               <CredPill emojiSrc="/emoji/globe.png"          label="SF · Chapala · Stanford"  bg="#1A9E48" />
             </motion.div>
 
@@ -153,6 +153,14 @@ function HeroSection() {
                 className="text-sm font-sans font-semibold text-muted hover:text-ink underline underline-offset-4 decoration-surface-dark hover:decoration-ink transition-colors duration-150"
               >
                 LinkedIn ↗
+              </a>
+              <a
+                href={siteData.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-sans font-semibold text-muted hover:text-ink underline underline-offset-4 decoration-surface-dark hover:decoration-ink transition-colors duration-150"
+              >
+                GitHub ↗
               </a>
             </motion.div>
           </motion.div>
@@ -287,11 +295,9 @@ function WorkSection() {
 
 const PROJECT_STYLES: Record<string, { pill: string; accent: string }> = {
   'HCI · Product':       { pill: '#3A5FCC', accent: '#3A5FCC' },
+  'Mobile · Social':     { pill: '#D05C14', accent: '#D05C14' },
   'Global Health · AI':  { pill: '#2E92D8', accent: '#2E92D8' },
   'Community · EdTech':  { pill: '#1A9E48', accent: '#1A9E48' },
-  'Civic Tech · Legal':  { pill: '#D48A00', accent: '#D48A00' },
-  'EdTech · Research':   { pill: '#B82840', accent: '#B82840' },
-  'Nonprofit · Product': { pill: '#D05C14', accent: '#D05C14' },
 };
 
 function ProjectsSection() {
@@ -322,7 +328,7 @@ function ProjectsSection() {
           </motion.h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 gap-5">
           {siteData.projects.map((project, i) => {
             const style = PROJECT_STYLES[project.tag] ?? { pill: '#3B82C4', accent: '#3B82C4' };
             return (
@@ -331,10 +337,18 @@ function ProjectsSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={inView}
-                transition={{ duration: 0.46, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.46, delay: (i % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="card-lift rounded-3xl p-6 bg-white border border-surface-dark hover:shadow-xl transition-all duration-300"
                 style={{ '--accent': style.accent } as React.CSSProperties}
               >
+                {project.image && (
+                  <img
+                    src={project.image}
+                    alt={`${project.title} screenshot`}
+                    className="w-full aspect-video object-cover rounded-2xl mb-4 border border-surface-dark"
+                    loading="lazy"
+                  />
+                )}
                 <span
                   className="inline-block rounded-full px-3 py-1.5 text-xs font-sans font-bold text-white mb-3 shadow-md shadow-black/10"
                   style={{ background: style.pill }}
@@ -353,12 +367,65 @@ function ProjectsSection() {
                   </p>
                 )}
                 <p className="font-sans text-xs text-muted/55">
-                  {project.year}{project.context ? ` · ${project.context}` : ''}
+                  {[project.year, project.context].filter(Boolean).join(' · ')}
                 </p>
+                {(project.liveUrl || project.githubUrl) && (
+                  <div className="flex gap-4 mt-4">
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-sans font-bold underline underline-offset-4 hover:opacity-75 transition-opacity duration-150"
+                        style={{ color: style.accent }}
+                      >
+                        Live ↗
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-sans font-bold underline underline-offset-4 hover:opacity-75 transition-opacity duration-150"
+                        style={{ color: style.accent }}
+                      >
+                        GitHub ↗
+                      </a>
+                    )}
+                  </div>
+                )}
               </motion.article>
             );
           })}
         </div>
+
+        <motion.div
+          variants={stagger(0.06)}
+          initial="hidden"
+          whileInView="show"
+          viewport={inView}
+          className="mt-14"
+        >
+          <motion.h3 variants={fadeUp} className="font-sans text-xs font-bold text-muted tracking-widest uppercase mb-4">
+            Other work
+          </motion.h3>
+          <ul className="divide-y divide-surface-dark border-y border-surface-dark">
+            {siteData.otherWork.map((item) => (
+              <motion.li
+                key={item.title}
+                variants={fadeUp}
+                className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 py-4"
+              >
+                <span className="font-display font-bold text-ink sm:w-56 shrink-0">{item.title}</span>
+                <span className="font-sans text-sm text-muted leading-relaxed flex-1">{item.description}</span>
+                <span className="font-sans text-xs text-muted/55 shrink-0">
+                  {item.year} · {item.context}
+                </span>
+              </motion.li>
+            ))}
+          </ul>
+        </motion.div>
       </div>
     </section>
   );
@@ -406,7 +473,7 @@ function AboutSection() {
                 Born in San Francisco, raised in Chapala, Jalisco. Back in the US for Stanford. Two languages, two cultures, and a conviction that technology should work for everyone, not just the people who build it.
               </p>
               <p>
-                Symbolic Systems + HCI at Stanford. 3× Amazon SDE intern. Co-founded an English-learning program that still runs at Mission High School, SF.
+                Symbolic Systems + HCI at Stanford. 3× Amazon SDE intern. Co-founded an English-learning program that still runs at 826 Valencia, SF.
               </p>
             </motion.div>
           </motion.div>
@@ -503,6 +570,15 @@ function ContactSection() {
               style={{ background: '#1A9E48' }}
             >
               in &nbsp;{siteData.contact.linkedinHandle} ↗
+            </a>
+            <a
+              href={siteData.contact.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl text-sm font-sans font-bold text-white transition-all duration-200 hover:-translate-y-0.5 shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              style={{ background: '#3A5FCC' }}
+            >
+              {siteData.contact.githubHandle} ↗
             </a>
           </motion.div>
 
