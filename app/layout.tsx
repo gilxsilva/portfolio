@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Fraunces, Plus_Jakarta_Sans } from 'next/font/google';
-import { Providers } from '@/components/Providers';
+import { Providers } from '@/components/layout/Providers';
 import './globals.css';
 
 const fraunces = Fraunces({
@@ -28,7 +28,6 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
   },
-  icons: { icon: '/icon.svg' },
 };
 
 export const viewport: Viewport = {
