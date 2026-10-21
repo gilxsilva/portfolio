@@ -163,10 +163,11 @@ export const siteData = {
       team: "Co-founded with 2 others",
       color: "#B4441A",
       problem: "**23%** of students at my San Francisco high school were newcomer English learners, with scattered support and few Spanish-speaking mentors. I knew that confusion firsthand.",
-      built: "Co-founded a program with 826 Valencia where newcomer, immigrant, refugee, and undocumented students learn English in a dynamic way, find community, and get resources to pursue college.",
+      built: "Co-founded an English-learning program with 826 Valencia and built its bilingual website and Playground: **8 interactive activities** for newcomer teens to practice school English, email, and digital safety. Spanish-first, with keyboard support, feedback, and retries. No student accounts or data collection.",
       outcome: "Backed by a **$10K** Youth Funding Youth Ideas grant, it helped **30+** newcomer students in its first semester and still runs today.",
       awards: ["$10K grant"],
-      liveUrl: "https://gilxsilva.github.io/finding-our-voice/",
+      liveUrl: "https://finding-our-voice.vercel.app/",
+      githubUrl: "https://github.com/gilxsilva/finding-our-voice",
     },
     {
       id: "sone",
